@@ -1,21 +1,28 @@
-import { lazy, Suspense } from "react";
-import { useActiveSection } from "~/hooks/useActiveSection";
+import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Suspense, lazy } from "react";
 import { useResolvedTheme } from "~/hooks/useResolvedTheme";
-import { About } from "~/sections/About/About";
-import { Contact } from "~/sections/Contact/Contact";
-import { Hero } from "~/sections/Hero/Hero";
-import { Work } from "~/sections/Work/Work";
 import { useSceneStore } from "~/state/sceneStore";
 import { Nav } from "~/ui/Nav/Nav";
-import styles from "./App.module.css";
+import styles from "./__root.module.css";
 
 const SceneMount = lazy(() =>
   import("~/scene/SceneMount").then((mod) => ({ default: mod.SceneMount })),
 );
 
-export function App() {
+const RouterDevtools = import.meta.env.DEV
+  ? lazy(() =>
+      import("@tanstack/react-router-devtools").then((mod) => ({
+        default: mod.TanStackRouterDevtools,
+      })),
+    )
+  : () => null;
+
+export const Route = createRootRoute({
+  component: RootLayout,
+});
+
+function RootLayout() {
   useResolvedTheme();
-  useActiveSection();
   const sceneEnabled = useSceneStore((s) => s.sceneEnabled);
 
   return (
@@ -29,14 +36,14 @@ export function App() {
       ) : null}
       <Nav />
       <main className={styles.main}>
-        <Hero />
-        <About />
-        <Work />
-        <Contact />
+        <Outlet />
       </main>
       <footer className={styles.footer}>
         <p className="t-caption">© ehrax.dev — scaffold</p>
       </footer>
+      <Suspense fallback={null}>
+        <RouterDevtools />
+      </Suspense>
     </div>
   );
 }

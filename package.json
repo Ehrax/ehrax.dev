@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build && tsc -b",
+    "typecheck": "tsc -b",
+    "analyze": "ANALYZE=true vite build",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -18,7 +20,10 @@
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
     "@react-three/postprocessing": "^3.0.4",
+    "@tanstack/react-router": "^1.169.2",
+    "@tanstack/react-router-devtools": "^1.166.13",
     "i18next": "^26.1.0",
+    "motion": "^12.38.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-i18next": "^17.0.7",
@@ -28,7 +33,10 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.15",
+    "@iconify-json/lucide": "^1.2.107",
+    "@iconify-json/simple-icons": "^1.2.82",
     "@playwright/test": "^1.60.0",
+    "@tanstack/router-plugin": "^1.167.35",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
@@ -38,8 +46,12 @@
     "@types/three": "^0.184.1",
     "@vitejs/plugin-react": "^6.0.1",
     "jsdom": "^29.1.1",
+    "rollup-plugin-visualizer": "^7.0.1",
     "typescript": "^6.0.3",
+    "unplugin-icons": "^23.0.1",
     "vite": "^8.0.12",
+    "vite-imagetools": "^10.0.0",
+    "vite-plugin-svgr": "^5.2.0",
     "vitest": "^4.1.6"
   }
 }
