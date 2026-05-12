@@ -1,0 +1,26 @@
+.section {
+  padding: var(--padding-section-y) var(--padding-section-x);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-section-stack);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  color: var(--color-grey-400);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-content-stack);
+}

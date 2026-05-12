@@ -1,0 +1,8 @@
+.heading {
+  max-width: 22ch;
+}
+
+.lede {
+  max-width: 56ch;
+  color: var(--color-grey-400);
+}

@@ -1,0 +1,47 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+  backdrop-filter: saturate(150%) blur(8px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-4) var(--padding-page-x);
+}
+
+.brand {
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-inline-start: auto;
+}
+
+.link {
+  color: var(--color-grey-400);
+  transition: color var(--duration-1) var(--easing-standard);
+}
+
+.link:hover {
+  color: var(--color-fg);
+}
+
+@media (max-width: 32rem) {
+  .list {
+    display: none;
+  }
+}
