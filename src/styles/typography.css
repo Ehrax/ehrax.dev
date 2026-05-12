@@ -5,8 +5,9 @@ body {
   line-height: var(--line-height-normal);
   color: var(--color-fg);
   background-color: var(--color-bg);
-  transition: background-color var(--duration-2) var(--easing-standard), color var(--duration-2)
-    var(--easing-standard);
+  transition:
+    background-color var(--duration-2) var(--easing-standard),
+    color var(--duration-2) var(--easing-standard);
 }
 
 .t-h1,

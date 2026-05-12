@@ -4,8 +4,9 @@
   border-radius: var(--radius-pill);
   color: var(--color-fg);
   background-color: transparent;
-  transition: background-color var(--duration-1) var(--easing-standard), border-color
-    var(--duration-1) var(--easing-standard);
+  transition:
+    background-color var(--duration-1) var(--easing-standard),
+    border-color var(--duration-1) var(--easing-standard);
 }
 
 .toggle:hover {

@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { lazy, Suspense } from "react";
 import { useActiveSection } from "~/hooks/useActiveSection";
 import { useResolvedTheme } from "~/hooks/useResolvedTheme";
 import { About } from "~/sections/About/About";

@@ -19,9 +19,8 @@
     "noUncheckedSideEffectImports": true,
     "verbatimModuleSyntax": true,
     "types": ["vite/client", "@testing-library/jest-dom"],
-    "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["./src/*"]
     }
   },
   "include": ["src", "vitest.setup.ts"]

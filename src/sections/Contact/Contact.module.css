@@ -19,8 +19,9 @@
   padding: var(--spacing-3) var(--spacing-5);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
-  transition: background-color var(--duration-1) var(--easing-standard), border-color
-    var(--duration-1) var(--easing-standard);
+  transition:
+    background-color var(--duration-1) var(--easing-standard),
+    border-color var(--duration-1) var(--easing-standard);
 }
 
 .link:hover {

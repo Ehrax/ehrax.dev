@@ -4,16 +4,26 @@ Static single-page React scaffold for the future scroll-driven, Three.js-heavy p
 
 The scaffold is provisional: copy, palette, typography, and the final 3D world are intentionally deferred. See `CONTEXT.md` for the domain language and decisions behind the structure.
 
+## Node version
+
+Pinned to **24.13.1** via `.node-version` (compatible with `fnm`, `nvm`, `volta`, `asdf`).
+
+```sh
+fnm use            # picks up .node-version
+# or
+nvm use            # same
+```
+
 ## Stack
 
-- **Vite** + **React 18** + **TypeScript**
-- **React Three Fiber**, **Three.js**, **@react-three/drei**, **@react-three/postprocessing** (TSL-ready scene layer)
-- **Zustand** for shared app/scene state (no per-frame values)
-- **Zod** for content/config validation
-- **i18next** / **react-i18next** (English only for now)
+- **Vite 8** + **React 19** + **TypeScript 6**
+- **React Three Fiber 9**, **Three.js**, **@react-three/drei 10**, **@react-three/postprocessing 3** (TSL-ready scene layer)
+- **Zustand 5** for shared app/scene state (no per-frame values)
+- **Zod 4** for content/config validation
+- **i18next 26** / **react-i18next 17** (English only for now)
 - **CSS Modules** + global CSS variable design system (no Tailwind, no runtime CSS-in-JS)
-- **Biome** for lint + format
-- **Vitest** + **React Testing Library** + **jest-dom** for unit tests
+- **Biome 2** for lint + format
+- **Vitest 4** + **React Testing Library** + **jest-dom** for unit tests
 - **Playwright** for browser-level smoke tests
 
 ## Scripts
