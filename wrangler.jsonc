@@ -7,10 +7,9 @@
     "not_found_handling": "single-page-application",
     "html_handling": "drop-trailing-slash"
   },
-  // Custom domain — re-enable once wrangler is logged into the CF account that owns the ehrax.dev zone.
-  // "routes": [
-  //   { "pattern": "ehrax.dev", "custom_domain": true }
-  // ],
+  "routes": [
+    { "pattern": "ehrax.dev", "custom_domain": true }
+  ],
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1
