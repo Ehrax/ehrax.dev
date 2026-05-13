@@ -18,7 +18,11 @@
     "test:e2e": "playwright test",
     "check": "biome check .",
     "format": "biome format --write .",
-    "lint": "biome lint ."
+    "lint": "biome lint .",
+    "cf:dev": "wrangler dev",
+    "cf:deploy": "pnpm run build && wrangler deploy",
+    "cf:deploy:dry": "pnpm run build && wrangler deploy --dry-run",
+    "cf:types": "wrangler types"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
@@ -56,9 +60,14 @@
     "vite": "^8.0.12",
     "vite-imagetools": "^10.0.0",
     "vite-plugin-svgr": "^5.2.0",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.6",
+    "wrangler": "^4.90.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["sharp"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
   }
 }

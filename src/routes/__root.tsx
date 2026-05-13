@@ -1,4 +1,4 @@
-import { Outlet, createRootRoute } from "@tanstack/react-router";
+import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
 import { Suspense, lazy } from "react";
 import { useResolvedTheme } from "~/hooks/useResolvedTheme";
 import { useSceneStore } from "~/state/sceneStore";
@@ -19,6 +19,7 @@ const RouterDevtools = import.meta.env.DEV
 
 export const Route = createRootRoute({
   component: RootLayout,
+  errorComponent: RouteErrorFallback,
 });
 
 function RootLayout() {
@@ -45,5 +46,28 @@ function RootLayout() {
         <RouterDevtools />
       </Suspense>
     </div>
+  );
+}
+
+function RouteErrorFallback({ error, reset }: { error: Error; reset: () => void }) {
+  return (
+    <section className={styles.fallback}>
+      <p className={styles.fallbackEyebrow}>Error</p>
+      <h1 className={styles.fallbackTitle}>Something broke</h1>
+      <p className={styles.fallbackBody}>
+        An unexpected error occurred while rendering this page.
+      </p>
+      {import.meta.env.DEV && error?.message ? (
+        <pre className={styles.fallbackError}>{error.message}</pre>
+      ) : null}
+      <div className={styles.fallbackActions}>
+        <button type="button" onClick={reset} className={styles.fallbackLink}>
+          Try again
+        </button>
+        <Link to="/" className={styles.fallbackLink}>
+          ← Back home
+        </Link>
+      </div>
+    </section>
   );
 }

@@ -14,4 +14,4 @@ test-results
 *.tsbuildinfo
 src/routeTree.gen.ts
 .tanstack
-.vercel
+.wrangler

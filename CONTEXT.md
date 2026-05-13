@@ -160,6 +160,10 @@ _Avoid_: Hardcoded copy inside components
 A no-server-runtime landing page shipped as static files while using client-side JavaScript heavily for Three.js and reactive UI.
 _Avoid_: Server-rendered application runtime
 
+**Cloudflare Workers Hosting**:
+The static-deployment target for the site, using Workers + Static Assets (Cloudflare's 2026-recommended successor to Pages). Chosen for unified DNS + hosting under a single provider, unlimited free-tier bandwidth, the largest edge network among comparable static hosts, and a single deployment unit that grows from pure static to optional serverless without product migration. Headers live in `public/_headers`; SPA fallback is configured via `assets.not_found_handling: "single-page-application"` in `wrangler.jsonc`; analytics is auto-injected by Cloudflare and needs no NPM package.
+_Avoid_: Treating the host as interchangeable when its `_headers` format, `wrangler.jsonc` schema, CSP origins, and analytics integration shape parts of the repo.
+
 **Simple Section Model**:
 The content structure of **Hero**, **About**, **Work**, and **Contact** as the complete first version of the site.
 _Avoid_: Extra sections before the core story exists
@@ -212,6 +216,7 @@ _Avoid_: AI automation when the intended meaning is coordinated engineering work
 - **Shared Types** live in `src/types`
 - **Localized Site Data** lives under `src/data`
 - The site is a **Static Single-Page Experience** until a real server-side need appears
+- **Cloudflare Workers Hosting** is the deploy surface for the **Static Single-Page Experience**, with git-integrated CD via Workers Builds and per-PR preview URLs
 
 ## Example dialogue
 
@@ -265,6 +270,8 @@ _Avoid_: AI automation when the intended meaning is coordinated engineering work
 > **Domain expert:** "Yes. Use `src/data` for **Localized Site Data**, not for premature external data plumbing."
 > **Dev:** "Does this need a server runtime?"
 > **Domain expert:** "No. Ship a **Static Single-Page Experience**; the heavy interactivity lives in client-side React and Three.js."
+> **Dev:** "Where should the site be hosted?"
+> **Domain expert:** "Use **Cloudflare Workers Hosting** with Static Assets for unified DNS + hosting, unlimited free-tier bandwidth, the largest edge network, and a single deployment unit that grows into serverless without product migration; the **Static Single-Page Experience** ships there as static files with git-integrated CD."
 
 ## Flagged ambiguities
 
@@ -276,7 +283,7 @@ _Avoid_: AI automation when the intended meaning is coordinated engineering work
 - React was selected over Astro and SolidJS because the site is JavaScript-heavy, React Three Fiber has the strongest ecosystem fit, and LLMs are especially effective at producing React examples.
 - TSL is intentionally experimental/future-facing and should be isolated inside the scene module so the rest of the site remains stable.
 - Astro and SolidJS were considered, but dropped in favor of a Vite-powered **React SPA**.
-- React structure should follow Vercel-style performance constraints: avoid barrel imports, isolate heavy modules, use narrow state subscriptions, and keep transient animation state out of React render state.
+- React structure should follow standard SPA performance discipline: avoid barrel imports, isolate heavy modules, use narrow state subscriptions, and keep transient animation state out of React render state.
 - Biome replaces the ESLint/Prettier baseline unless a specific plugin gap appears.
 - Playwright tests should focus on stable browser behavior first; visual/canvas assertions can be added once the real Three.js scene exists.
 - The scaffold should include only enough tests to prove Vitest, React Testing Library, and Playwright are wired correctly.
@@ -301,3 +308,4 @@ _Avoid_: AI automation when the intended meaning is coordinated engineering work
 - CSS Modules should be used for non-trivial components; global CSS is reserved for reset, base styles, themes, and design tokens.
 - Theme state defaults to `prefers-color-scheme`, supports manual light/dark override, and can persist the override in localStorage.
 - Avoid server runtime assumptions in the scaffold; API routes are optional future additions, not part of the first architecture.
+- **Cloudflare Workers Hosting** was chosen over Vercel because the domain DNS already lives at Cloudflare, the free tier has no bandwidth cap, and the edge network is larger; the alternative (Vercel) has slightly more polished DX and Speed Insights, but introduces a second vendor. Workers + Static Assets was chosen over Cloudflare Pages because Cloudflare's 2026 guidance points all new projects at Workers — Pages has feature parity but no future investment, and adding serverless later means staying inside the same product. The architecture stays portable — CSP, headers, SPA fallback, and analytics are the host-shaped surfaces and can be re-translated if needed.

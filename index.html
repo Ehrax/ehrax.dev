@@ -5,16 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light dark" />
     <title>ehrax.dev</title>
-    <script>
-      (() => {
-        try {
-          const stored = localStorage.getItem("theme-preference");
-          if (stored === "light" || stored === "dark") {
-            document.documentElement.dataset.theme = stored;
-          }
-        } catch {}
-      })();
-    </script>
+    <script src="/theme-init.js"></script>
   </head>
   <body>
     <div id="root"></div>
