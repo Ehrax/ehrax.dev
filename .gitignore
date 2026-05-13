@@ -13,4 +13,5 @@ test-results
 *.log
 *.tsbuildinfo
 src/routeTree.gen.ts
+.tanstack
 .vercel
