@@ -1,5 +1,5 @@
 .intro {
-  color: var(--color-grey-400);
+  color: var(--color-muted);
   max-width: 60ch;
 }
 
@@ -20,11 +20,11 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
   transition:
-    background-color var(--duration-1) var(--easing-standard),
-    border-color var(--duration-1) var(--easing-standard);
+    background-color var(--duration-fast) var(--easing-standard),
+    border-color var(--duration-fast) var(--easing-standard);
 }
 
 .link:hover {
   background-color: var(--color-surface);
-  border-color: var(--color-grey-300);
+  border-color: var(--color-border-strong);
 }

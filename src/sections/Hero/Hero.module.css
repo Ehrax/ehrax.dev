@@ -4,5 +4,5 @@
 
 .lede {
   max-width: 56ch;
-  color: var(--color-grey-400);
+  color: var(--color-muted);
 }

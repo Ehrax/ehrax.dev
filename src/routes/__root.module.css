@@ -8,21 +8,21 @@
 .sceneLayer {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: var(--z-scene);
   pointer-events: none;
 }
 
 .main {
   position: relative;
-  z-index: 1;
+  z-index: var(--z-content);
 }
 
 .footer {
   position: relative;
-  z-index: 1;
+  z-index: var(--z-content);
   padding: var(--spacing-8) var(--padding-page-x);
   border-top: 1px solid var(--color-border);
-  color: var(--color-grey-400);
+  color: var(--color-muted);
 }
 
 .fallback {
@@ -40,7 +40,7 @@
   font-size: 0.875rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-grey-400);
+  color: var(--color-muted);
 }
 
 .fallbackTitle {
@@ -51,7 +51,7 @@
 
 .fallbackBody {
   margin: 0;
-  color: var(--color-grey-400);
+  color: var(--color-muted);
   max-width: 56ch;
 }
 
@@ -60,7 +60,7 @@
   padding: var(--spacing-3) var(--spacing-4);
   font-family: var(--font-mono, monospace);
   font-size: 0.8125rem;
-  color: var(--color-grey-400);
+  color: var(--color-muted);
   background: color-mix(in oklab, var(--color-border) 30%, transparent);
   border-radius: 0.375rem;
   white-space: pre-wrap;

@@ -76,7 +76,7 @@ h6 {
   font-size: var(--font-size-caption);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-snug);
-  color: var(--color-grey-400);
+  color: var(--color-muted);
 }
 
 .t-overline {
