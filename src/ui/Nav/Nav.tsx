@@ -1,5 +1,4 @@
 import { useContent } from "~/i18n/useContent";
-import { ThemeToggle } from "~/ui/ThemeToggle/ThemeToggle";
 import styles from "./Nav.module.css";
 
 type NavLink = { id: string; label: string; href: string };
@@ -16,19 +15,20 @@ export function Nav() {
   return (
     <header className={styles.header}>
       <nav className={styles.nav} aria-label="Primary">
-        <a href="#hero" className={`t-button ${styles.brand}`}>
-          ehrax.dev
+        <div className={styles.backdrop} />
+        <a href="#hero" className={styles.brand} aria-label="ehrax.dev home">
+          <span className={styles.mark}>eh</span>
         </a>
+        <div className={styles.divider} aria-hidden="true" />
         <ul className={styles.list}>
           {links.map((link) => (
             <li key={link.id}>
-              <a className={`t-button ${styles.link}`} href={link.href}>
+              <a className={styles.link} href={link.href}>
                 {link.label}
               </a>
             </li>
           ))}
         </ul>
-        <ThemeToggle />
       </nav>
     </header>
   );

@@ -1,6 +1,29 @@
 .section {
+  --section-depth-progress: 0;
+  --section-exit-progress: 0;
+  --section-exit-z: -8px;
+  --section-lock-y: 0px;
+  --section-depth-scale: 0.025;
+  --section-reveal-progress: 1;
+  --section-reveal-offset: calc((1 - var(--section-reveal-progress)) * 14px);
+  --section-depth-z: -38px;
+
+  position: relative;
   padding: var(--padding-section-y) var(--padding-section-x);
-  border-bottom: 1px solid var(--color-border);
+}
+
+.section[data-scroll-reveal-section="hero"],
+.section[data-scroll-reveal-section="about"] {
+  --color-muted: var(--color-scroll-content-muted);
+  --color-subtle: var(--color-scroll-content-muted);
+
+  color: var(--color-scroll-content-fg);
+  min-height: 185svh;
+}
+
+.section[data-scroll-reveal-section="work"],
+.section[data-scroll-reveal-section="contact"] {
+  background-color: var(--color-bg);
 }
 
 .section:last-of-type {
@@ -13,6 +36,56 @@
   gap: var(--gap-section-stack);
   max-width: var(--content-max-width);
   margin: 0 auto;
+  transform: translate3d(
+      0,
+      calc(
+        var(--section-lock-y) +
+        var(--section-reveal-offset) -
+        var(--section-exit-progress) *
+        36px
+      ),
+      0
+    )
+    perspective(520px)
+    translateZ(
+      calc(
+        var(--section-depth-progress) *
+        var(--section-depth-z) +
+        var(--section-exit-progress) *
+        var(--section-exit-z)
+      )
+    )
+    scale(calc(1 - var(--section-depth-progress) * var(--section-depth-scale)));
+  opacity: clamp(
+    0,
+    calc(var(--section-reveal-progress) * 1.15 - var(--section-exit-progress) * 1.18),
+    1
+  );
+  filter: blur(
+    calc((1 - min(var(--section-reveal-progress), 1)) * 1.1px + var(--section-exit-progress) * 7px)
+  );
+  transition:
+    filter var(--duration-slow) var(--ease-out),
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  will-change: transform, opacity, filter;
+}
+
+.section[data-scroll-reveal-section="hero"] .inner,
+.section[data-scroll-reveal-section="about"] .inner {
+  position: sticky;
+  padding-block: var(--spacing-16);
+}
+
+.section[data-scroll-reveal-section="hero"] .inner {
+  top: clamp(var(--spacing-16), 12svh, var(--spacing-24));
+}
+
+.section[data-scroll-reveal-section="about"] .inner {
+  --section-lock-y: -50%;
+
+  top: 50svh;
+  max-width: min(48rem, var(--content-max-width));
 }
 
 .eyebrow {
@@ -23,4 +96,41 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-content-stack);
+}
+
+.eyebrow,
+.body {
+  transform: translateY(calc((1 - var(--section-reveal-progress)) * 10px));
+  opacity: clamp(0.68, calc(var(--section-reveal-progress) * 1.2), 1);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  will-change: transform, opacity;
+}
+
+.body {
+  transition-delay: 80ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    min-height: auto;
+  }
+
+  .inner,
+  .eyebrow,
+  .body {
+    position: static;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+.section[data-scroll-reveal-section="work"] .inner,
+.section[data-scroll-reveal-section="contact"] .inner {
+  opacity: 1;
+  filter: none;
+  transform: none;
 }

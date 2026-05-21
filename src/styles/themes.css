@@ -88,6 +88,29 @@
   --color-scene-muted: #a0a6c5;
   --color-scene-glow: #8ea0ff;
   --color-scene-rim: #ff8a7a;
+  --color-scroll-scene-bg-start: var(--color-primary);
+  --color-scroll-scene-bg-hold: var(--primary-900);
+  --color-scroll-scene-bg-final: var(--background-950);
+  --color-scroll-scene-dot-base: var(--primary-950);
+  --color-scroll-scene-dot-start: var(--color-brand-light);
+  --color-scroll-scene-dot-hold: var(--color-scene-glow);
+  --color-scroll-scene-dot-final: var(--color-atmosphere);
+  --color-scroll-scene-floor: var(--background-950);
+  --color-scroll-scene-grid-primary: var(--color-brand-light);
+  --color-scroll-scene-grid-secondary: var(--primary-700);
+  --color-scroll-scene-glyph-start: var(--color-scene-fg);
+  --color-scroll-scene-glyph-hold: var(--color-scene-glow);
+  --color-scroll-scene-glyph-final: var(--color-atmosphere);
+  --color-scroll-scene-glyph-emissive: var(--color-atmosphere);
+  --color-scroll-scene-point-light: var(--color-atmosphere);
+  --color-scroll-content-fg: var(--color-scene-fg);
+  --color-scroll-content-muted: var(--color-scene-muted);
+  --color-nav-pill-bg: color-mix(in srgb, var(--color-primary) 74%, transparent);
+  --color-nav-pill-border: color-mix(in srgb, var(--color-brand-light) 32%, transparent);
+  --color-nav-pill-divider: color-mix(in srgb, var(--color-brand-light) 25%, transparent);
+  --color-nav-pill-highlight: color-mix(in srgb, var(--color-scene-fg) 75%, transparent);
+  --color-nav-pill-text: var(--color-scene-fg);
+  --color-nav-pill-text-muted: color-mix(in srgb, var(--color-scene-fg) 72%, transparent);
 
   --color-grey-100: var(--secondary-50);
   --color-grey-200: var(--secondary-100);
@@ -204,6 +227,30 @@
   --color-link: var(--primary-700);
   --color-link-hover: var(--primary-800);
   --color-ring: var(--primary-700);
+
+  --color-scroll-scene-bg-start: var(--background-200);
+  --color-scroll-scene-bg-hold: var(--primary-100);
+  --color-scroll-scene-bg-final: var(--background-50);
+  --color-scroll-scene-dot-base: var(--background-50);
+  --color-scroll-scene-dot-start: var(--primary-500);
+  --color-scroll-scene-dot-hold: var(--primary-700);
+  --color-scroll-scene-dot-final: var(--color-atmosphere);
+  --color-scroll-scene-floor: var(--background-50);
+  --color-scroll-scene-grid-primary: var(--primary-700);
+  --color-scroll-scene-grid-secondary: var(--secondary-300);
+  --color-scroll-scene-glyph-start: var(--text-950);
+  --color-scroll-scene-glyph-hold: var(--primary-800);
+  --color-scroll-scene-glyph-final: var(--color-atmosphere);
+  --color-scroll-scene-glyph-emissive: var(--color-atmosphere);
+  --color-scroll-scene-point-light: var(--color-atmosphere);
+  --color-scroll-content-fg: var(--color-scene-fg);
+  --color-scroll-content-muted: var(--color-scene-muted);
+  --color-nav-pill-bg: color-mix(in srgb, var(--color-surface) 58%, transparent);
+  --color-nav-pill-border: color-mix(in srgb, var(--color-border-strong) 72%, transparent);
+  --color-nav-pill-divider: color-mix(in srgb, var(--color-border-strong) 70%, transparent);
+  --color-nav-pill-highlight: color-mix(in srgb, var(--color-fg) 70%, transparent);
+  --color-nav-pill-text: var(--color-fg);
+  --color-nav-pill-text-muted: var(--color-muted);
 
   color-scheme: dark;
 }

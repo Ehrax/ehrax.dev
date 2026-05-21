@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import styles from "./Section.module.css";
 
 type SectionProps = {
@@ -10,10 +10,28 @@ type SectionProps = {
 
 export function Section({ id, ariaLabel, eyebrow, children }: SectionProps) {
   return (
-    <section id={id} className={styles.section} aria-label={ariaLabel}>
+    <section
+      id={id}
+      className={styles.section}
+      aria-label={ariaLabel}
+      data-scroll-reveal-section={id}
+      style={
+        {
+          "--section-exit-progress": "0",
+          "--section-depth-progress": "0",
+          "--section-reveal-progress": "1",
+        } as CSSProperties
+      }
+    >
       <div className={styles.inner}>
-        {eyebrow ? <p className={`t-overline ${styles.eyebrow}`}>{eyebrow}</p> : null}
-        <div className={styles.body}>{children}</div>
+        {eyebrow ? (
+          <p className={`t-overline ${styles.eyebrow}`} data-scroll-reveal-item>
+            {eyebrow}
+          </p>
+        ) : null}
+        <div className={styles.body} data-scroll-reveal-item>
+          {children}
+        </div>
       </div>
     </section>
   );

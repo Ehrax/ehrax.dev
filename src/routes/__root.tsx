@@ -1,5 +1,6 @@
-import { Link, Outlet, createRootRoute } from "@tanstack/react-router";
-import { Suspense, lazy } from "react";
+import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { lazy, Suspense } from "react";
+import { ScrollProgressRail } from "~/features/sectionReveal/ScrollProgressRail";
 import { useResolvedTheme } from "~/hooks/useResolvedTheme";
 import { useSceneStore } from "~/state/sceneStore";
 import { Nav } from "~/ui/Nav/Nav";
@@ -35,6 +36,7 @@ function RootLayout() {
           </Suspense>
         </div>
       ) : null}
+      {sceneEnabled ? <ScrollProgressRail /> : null}
       <Nav />
       <main className={styles.main}>
         <Outlet />
@@ -54,9 +56,7 @@ function RouteErrorFallback({ error, reset }: { error: Error; reset: () => void 
     <section className={styles.fallback}>
       <p className={styles.fallbackEyebrow}>Error</p>
       <h1 className={styles.fallbackTitle}>Something broke</h1>
-      <p className={styles.fallbackBody}>
-        An unexpected error occurred while rendering this page.
-      </p>
+      <p className={styles.fallbackBody}>An unexpected error occurred while rendering this page.</p>
       {import.meta.env.DEV && error?.message ? (
         <pre className={styles.fallbackError}>{error.message}</pre>
       ) : null}

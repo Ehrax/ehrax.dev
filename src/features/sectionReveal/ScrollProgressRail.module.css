@@ -1,0 +1,61 @@
+.rail {
+  position: fixed;
+  top: 50%;
+  left: clamp(var(--spacing-4), 7vw, var(--spacing-16));
+  z-index: var(--z-content);
+  width: 3.5rem;
+  height: min(42rem, 58svh);
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: color-mix(in srgb, var(--color-scene-fg) 72%, transparent);
+  opacity: clamp(0, calc((0.78 - var(--scroll-progress, 0)) * 8), 0.72);
+  transition: opacity var(--duration-slow) var(--ease-out);
+}
+
+.track {
+  position: absolute;
+  top: 0.35rem;
+  left: 0.2rem;
+  width: 1px;
+  height: calc(100% - 0.7rem);
+  background: color-mix(in srgb, currentColor 20%, transparent);
+}
+
+.track::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -1px;
+  width: 3px;
+  height: calc(var(--scroll-progress, 0) * 100%);
+  background: currentColor;
+  box-shadow: 0 0 18px color-mix(in srgb, var(--color-scene-glow) 70%, transparent);
+}
+
+.tick {
+  position: absolute;
+  left: 0;
+  top: calc(var(--tick-value) * 100%);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  transform: translateY(-50%);
+  font-family: var(--font-family-mono);
+  font-size: 0.625rem;
+  color: currentColor;
+}
+
+.tick::before {
+  content: "";
+  display: block;
+  width: 0.9rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+@media (max-width: 52rem) {
+  .rail {
+    display: none;
+  }
+}
