@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="96" fill="#080b11" />
+  <text
+    x="175"
+    y="335"
+    fill="#eff0f5"
+    font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+    font-size="272"
+    font-weight="700"
+  >E</text>
+  <rect x="314" y="144" width="64" height="240" fill="#364cc9" />
+</svg>

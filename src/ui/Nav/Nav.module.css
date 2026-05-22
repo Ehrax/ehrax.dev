@@ -68,18 +68,57 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.brand {
+  min-width: 0;
+  padding-inline: var(--spacing-2);
+}
+
 .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  height: 1.05rem;
   font-family: var(--font-family-mono);
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-semibold);
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0;
-  text-transform: lowercase;
+}
+
+.markLetter {
+  color: var(--color-nav-pill-text);
+  line-height: 1;
+}
+
+.markCaret {
+  width: 0.28rem;
+  height: 1rem;
+  background-color: var(--color-primary);
+  animation: logo-caret-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes logo-caret-blink {
+  0%,
+  46% {
+    opacity: 1;
+  }
+
+  47%,
+  100% {
+    opacity: 0.22;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .markCaret {
+    animation: none;
+  }
 }
 
 .divider {
   width: 1px;
   height: 1.5rem;
-  margin-inline: var(--spacing-3) var(--spacing-1);
+  margin-inline: var(--spacing-2) var(--spacing-1);
   background-color: var(--color-nav-pill-divider);
 }
 

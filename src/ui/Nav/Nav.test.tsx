@@ -35,10 +35,11 @@ describe("Nav", () => {
   it("uses the logo as the top link without showing a top nav item", () => {
     useSceneStore.setState({ activeSection: "hero", navRevealed: true });
 
-  render(<Nav />);
+    render(<Nav />);
 
-  expect(screen.getByRole("link", { name: "ehrax.dev home" })).toHaveAttribute("href", "#hero");
-  expect(screen.getByText("ehrax.dev")).toBeVisible();
-  expect(screen.queryByRole("link", { name: "Top" })).not.toBeInTheDocument();
-});
+    expect(screen.getByRole("link", { name: "ehrax.dev home" })).toHaveAttribute("href", "#hero");
+    expect(screen.getByText("{E}")).toBeVisible();
+    expect(screen.getByTestId("logo-caret")).toBeVisible();
+    expect(screen.queryByRole("link", { name: "Top" })).not.toBeInTheDocument();
+  });
 });

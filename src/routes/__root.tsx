@@ -1,6 +1,5 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
 import { lazy, Suspense } from "react";
-import { ScrollProgressRail } from "~/features/sectionReveal/ScrollProgressRail";
 import { useResolvedTheme } from "~/hooks/useResolvedTheme";
 import { useSceneStore } from "~/state/sceneStore";
 import { Nav } from "~/ui/Nav/Nav";
@@ -36,7 +35,6 @@ function RootLayout() {
           </Suspense>
         </div>
       ) : null}
-      {sceneEnabled ? <ScrollProgressRail /> : null}
       <Nav />
       <main className={styles.main}>
         <Outlet />

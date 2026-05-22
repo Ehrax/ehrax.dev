@@ -19,7 +19,10 @@ export function Nav() {
       <nav className={styles.nav} aria-label="Primary">
         <div className={styles.backdrop} />
         <a href="#hero" className={styles.brand} aria-label="ehrax.dev home">
-          <span className={styles.mark}>ehrax.dev</span>
+          <span className={styles.mark}>
+            <span className={styles.markLetter}>{"{E}"}</span>
+            <span className={styles.markCaret} data-testid="logo-caret" aria-hidden="true" />
+          </span>
         </a>
         <div className={styles.divider} aria-hidden="true" />
         <ul className={styles.list}>
