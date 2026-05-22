@@ -1,12 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#080b11" />
+  <circle cx="32" cy="32" r="32" fill="#080b11" />
   <text
-    x="22"
-    y="42"
+    x="32"
+    y="34"
     fill="#eff0f5"
     font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
-    font-size="34"
+    font-size="28"
     font-weight="700"
-  >E</text>
-  <rect x="39" y="18" width="8" height="30" fill="#364cc9" />
+    dominant-baseline="middle"
+    text-anchor="middle"
+  >{E}</text>
 </svg>
