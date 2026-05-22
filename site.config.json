@@ -1,0 +1,26 @@
+{
+  "site": {
+    "baseUrl": "https://ehrax.dev",
+    "siteName": "ehrax.dev",
+    "author": "Alexander Rasputin",
+    "locale": "en_US",
+    "language": "en",
+    "jobTitle": "Senior Product Engineer",
+    "themeColor": "#080b11"
+  },
+  "routes": [
+    {
+      "path": "/",
+      "changeFrequency": "monthly",
+      "priority": 1,
+      "searchPreview": {
+        "title": "Alexander Rasputin | Senior Product Engineer",
+        "description": "Senior product engineer building end-to-end product experiences with strong UX judgment, broad engineering range, and agentic workflows.",
+        "imagePath": "/og-image.png",
+        "imageAlt": "ehrax.dev search preview for Alexander Rasputin",
+        "type": "profile",
+        "robots": "index,follow"
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ehrax.dev/sitemap.xml

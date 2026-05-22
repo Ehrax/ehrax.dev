@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">ehrax.dev search preview</title>
+  <desc id="desc">Search preview card for Alexander Rasputin, Senior Product Engineer.</desc>
+  <rect width="1200" height="630" fill="#080b11" />
+  <rect x="72" y="72" width="1056" height="486" rx="32" fill="#101723" stroke="#2b8a7f" stroke-width="2" />
+  <circle cx="1034" cy="164" r="72" fill="#f3c46b" opacity="0.92" />
+  <circle cx="1004" cy="164" r="72" fill="#101723" opacity="0.72" />
+  <path d="M112 448 C 284 388, 364 520, 528 444 S 792 412, 1088 470" fill="none" stroke="#2b8a7f" stroke-width="7" stroke-linecap="round" opacity="0.86" />
+  <path d="M112 493 C 308 432, 420 556, 620 486 S 852 458, 1088 516" fill="none" stroke="#8fd7cc" stroke-width="4" stroke-linecap="round" opacity="0.58" />
+  <text x="112" y="174" fill="#8fd7cc" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="34" font-weight="700" letter-spacing="0">ehrax.dev</text>
+  <text x="112" y="286" fill="#f7fafc" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="74" font-weight="800" letter-spacing="0">Alexander Rasputin</text>
+  <text x="116" y="360" fill="#d9e2ec" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="40" font-weight="500" letter-spacing="0">Senior Product Engineer</text>
+  <text x="116" y="407" fill="#9fb0c1" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="500" letter-spacing="0">Product craft, workflows, web, mobile, and agentic engineering.</text>
+</svg>

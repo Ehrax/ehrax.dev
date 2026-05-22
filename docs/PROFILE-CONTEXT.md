@@ -47,7 +47,7 @@ What that means:
 
 - CarOnSale: senior frontend/product engineering work across mobile and web products in a fast-growing startup context.
 - Bikepark Thunersee Trailpass: freelance work on a webhook pipeline that generates customer tickets, showing backend workflow and product pipeline range beyond visual frontend work.
-- Ongoing personal site work: a scroll-driven, Three.js-heavy landing page that should become a living workshop rather than a static CV.
+- Ongoing personal site work: a scroll-driven, Three.js-heavy landing page that should tell a story around Alexander rather than become a static CV.
 
 ## Tone
 
@@ -73,9 +73,9 @@ Avoid:
 
 ## Landing Page Direction
 
-The site should feel like a **living workshop**, not a résumé.
+The site should feel like a **story-led personal profile**, not a résumé.
 
-It should welcome people into Alexander's evolving practice: professional work, product experiments, unfinished explorations, learning, craft, and personal interests. The page can show range, but product engineering should remain the spine.
+It should welcome people into Alexander's evolving practice: professional work, product experiments, unfinished explorations, learning, craft, and personal interests. The page can show range, but product engineering should remain the spine. It can have workshop energy in the experiments and details, but the main idea is to tell a coherent story around Alexander.
 
 The strongest emotional center is:
 
@@ -128,10 +128,11 @@ Keep this light and visible, but not dominant.
 - Not only "mobile and web."
 - Not only "frontend."
 - Not a case-study archive before the core story is clear.
+- Not a maker-studio or workshop concept that distracts from Alexander's story.
 
 ## What The Page Should Be
 
-- A personal, evolving workshop.
+- A story-led personal profile.
 - A product engineer's home base.
 - A place where shipped work, experiments, and craft can coexist.
 - A visual and interactive proof of taste.
@@ -143,13 +144,13 @@ Keep this light and visible, but not dominant.
 - **Hero**: warm intro, senior product engineer identity, product idea to working experience.
 - **About**: craft-led story, end-to-end scope, agentic workflow direction.
 - **Work**: selected projects and proof points, including CarOnSale, Bikepark Thunersee Trailpass, and future experiments.
-- **Workshop / Experiments**: Three.js, 3D, shaders, prototypes, unfinished explorations, AI workflow experiments.
+- **Experiments / Lab**: Three.js, 3D, shaders, prototypes, unfinished explorations, AI workflow experiments.
 - **Personal Texture**: subtle mention of surfing, photography, woodcrafting, and hands-on craft.
 - **Contact**: direct links, no form needed at first.
 
 ## Design Keywords
 
-- Living workshop
+- Story-led personal profile
 - Product craft
 - Interface craft
 - End-to-end product experience
@@ -159,4 +160,3 @@ Keep this light and visible, but not dominant.
 - Polished but not sterile
 - Technical but warm
 - Visual, interactive, tactile
-

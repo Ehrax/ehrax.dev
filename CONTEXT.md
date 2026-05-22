@@ -216,9 +216,9 @@ _Avoid_: Only showing visual interface work when backend workflow work is part o
 A personal tone that presents strong product, craft, and agentic engineering ability with curiosity, warmth, and evidence rather than hype.
 _Avoid_: Grandiose AI positioning or over-claiming independence
 
-**Living Workshop**:
-A personal site model that presents Alexander's professional work, experiments, unfinished explorations, craft interests, and personal creative practices as one evolving body of work rather than a static CV.
-_Avoid_: Portfolio as résumé-only artifact
+**Story-Led Personal Profile**:
+A personal site model that tells a coherent story around Alexander, his product engineering practice, selected work, experiments, and personal craft without becoming a strict CV.
+_Avoid_: Résumé-only portfolio or workshop-as-the-main-identity
 
 **Pasteable Profile Context**:
 A compact document that can be given to an AI or design tool as context for who Alexander is, what his strengths are, and how the landing page should feel.
@@ -251,7 +251,7 @@ _Avoid_: Employee count as trivia when the significance is ownership and leverag
 - **Product Pipeline Work** is evidence for **End-to-End Product Engineering**
 - **Expanding Creative Engineering Craft** is the learning/exploration layer that keeps the site feeling alive rather than résumé-like
 - **Humble Builder Voice** is the tone constraint for explaining **End-to-End Agentic Product Building**
-- **Living Workshop** is the preferred page model for the landing experience: work, craft, experiments, and personal explorations can coexist without making the site feel like a CV
+- **Story-Led Personal Profile** is the preferred page model for the landing experience: the page should tell a story around Alexander rather than behave like a strict CV
 - **Pasteable Profile Context** should combine a profile brief and landing page creative brief in one document
 - **Whole-Person Craft** supports **Humble Builder Voice** by making Alexander's taste and curiosity feel human and grounded
 - **Agentic Coding** is a practical expression of **Agentic Engineering**, not the primary headline label
@@ -306,7 +306,7 @@ _Avoid_: Employee count as trivia when the significance is ownership and leverag
 > **Dev:** "How should the AI acceleration angle sound?"
 > **Domain expert:** "Use **Humble Builder Voice**. Show that agentic workflows help Alexander build more independently and move faster, but keep the tone curious, grounded, and proof-led."
 > **Dev:** "Should the site feel like a CV?"
-> **Domain expert:** "No. Use the **Living Workshop** model: professional work, experiments, learning, and personal craft interests can all appear as part of one evolving practice."
+> **Domain expert:** "No. Use the **Story-Led Personal Profile** model: tell a coherent story around Alexander, with work, experiments, learning, and personal craft as supporting material."
 > **Dev:** "What kind of document should come out of the positioning work?"
 > **Domain expert:** "Create a **Pasteable Profile Context** that can be dropped into an AI or design tool: first who Alexander is, then how to write and design for him."
 > **Dev:** "Is this vibe coding?"
@@ -371,7 +371,7 @@ _Avoid_: Employee count as trivia when the significance is ownership and leverag
 - The landing page voice should stay humble and exploratory: strong claims need proof, texture, and curiosity, not self-mythologizing.
 - A current freelance proof point is Bikepark Thunersee Trailpass work: a webhook pipeline for generating customer tickets. This should support **Product Pipeline Work** and show range beyond visual frontend work.
 - Three.js/3D exploration should be positioned as **Expanding Creative Engineering Craft**, not as a finished identity claim until project proof exists.
-- The site should feel like a **Living Workshop**, not a CV. It can include surfing, photography, woodcrafting, and other hands-on interests as texture for **Whole-Person Craft**, as long as professional product engineering remains the spine.
+- The site should be a **Story-Led Personal Profile**, not a strict CV. It can include workshop-like experiments, surfing, photography, woodcrafting, and other hands-on interests as texture for **Whole-Person Craft**, as long as professional product engineering remains the spine.
 - The visual reference is a **Scroll-Driven 3D Landing Page** with sparse text, persistent navigation, and section-based scene transitions; it should inspire structure and motion without being copied.
 - React was selected over Astro and SolidJS because the site is JavaScript-heavy, React Three Fiber has the strongest ecosystem fit, and LLMs are especially effective at producing React examples.
 - TSL is intentionally experimental/future-facing and should be isolated inside the scene module so the rest of the site remains stable.
