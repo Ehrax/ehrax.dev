@@ -7,7 +7,18 @@
   display: grid;
   grid-template-columns: auto 1fr auto;
   height: 7.5rem;
+  opacity: 0;
   pointer-events: none;
+  transform: translateY(-7.5rem);
+  transition:
+    opacity 420ms var(--ease-out),
+    transform 720ms var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.header[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .nav {
@@ -61,7 +72,7 @@
   font-family: var(--font-family-mono);
   font-size: 0.75rem;
   font-weight: var(--font-weight-semibold);
-  letter-spacing: -0.08em;
+  letter-spacing: 0;
   text-transform: lowercase;
 }
 
@@ -89,7 +100,8 @@
 }
 
 .link:hover,
-.link:focus-visible {
+.link:focus-visible,
+.link[data-active="true"] {
   color: var(--color-nav-pill-text);
 }
 
@@ -110,7 +122,8 @@
 }
 
 .link:hover::after,
-.link:focus-visible::after {
+.link:focus-visible::after,
+.link[data-active="true"]::after {
   opacity: 1;
 }
 

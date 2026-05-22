@@ -6,6 +6,7 @@ import type { SceneSection, SceneVisual } from "~/state/sceneStore";
 
 type ScrollGlyphProps = {
   activeSection: SceneSection;
+  effectOpacity: number;
   emissiveColor: string;
   glyphColor: string;
   progress: number;
@@ -21,6 +22,7 @@ const sectionOffset: Record<SceneSection, number> = {
 
 export function ScrollGlyph({
   activeSection,
+  effectOpacity,
   emissiveColor,
   glyphColor,
   progress,
@@ -35,8 +37,8 @@ export function ScrollGlyph({
     const easedProgress = MathUtils.smoothstep(progress, 0, 1);
     const targetColor = new Color(glyphColor);
     const targetEmissive = new Color(emissiveColor);
-    const targetOpacity = visual === "blueprint" ? 0.2 : 0.38;
-    const targetEmissiveIntensity = visual === "neon" ? 0.55 : 0;
+    const targetOpacity = (visual === "blueprint" ? 0.2 : 0.38) * effectOpacity;
+    const targetEmissiveIntensity = (visual === "neon" ? 0.55 : 0) * effectOpacity;
 
     for (const material of [firstMaterial.current, secondMaterial.current, thirdMaterial.current]) {
       if (!material) continue;

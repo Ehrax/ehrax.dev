@@ -10,6 +10,7 @@ export const dotFieldVertexShader = `
 export const dotFieldFragmentShader = `
   uniform float uTime;
   uniform float uProgress;
+  uniform float uOpacity;
   uniform vec3 uColorA;
   uniform vec3 uColorB;
   varying vec2 vUv;
@@ -38,6 +39,6 @@ export const dotFieldFragmentShader = `
     vec3 color = mix(uColorA, uColorB, smoothstep(0.0, 1.0, uProgress));
     float alpha = (dots * 0.18 + wave * 0.08) * vignette;
 
-    gl_FragColor = vec4(color, alpha);
+    gl_FragColor = vec4(color, alpha * uOpacity);
   }
 `;

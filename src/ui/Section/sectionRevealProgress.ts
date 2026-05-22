@@ -26,8 +26,8 @@ export function getSectionExitProgress({
 }: Pick<SectionRevealProgressInput, "sectionBottom" | "viewportHeight">): number {
   if (sectionBottom === undefined || viewportHeight <= 0) return 0;
 
-  const exitStart = viewportHeight * 0.78;
-  const exitEnd = viewportHeight * 0.32;
+  const exitStart = viewportHeight * 1.12;
+  const exitEnd = viewportHeight * 0.42;
 
   return clamp01((exitStart - sectionBottom) / (exitStart - exitEnd));
 }
@@ -38,7 +38,7 @@ export function getHeroTextExitProgress({
 }: Pick<SectionRevealProgressInput, "sectionTop" | "viewportHeight">): number {
   if (viewportHeight <= 0) return 0;
 
-  return clamp01(-sectionTop / (viewportHeight * 0.34));
+  return clamp01(-sectionTop / viewportHeight);
 }
 
 export function getSectionDepthProgress({
@@ -47,8 +47,8 @@ export function getSectionDepthProgress({
 }: Pick<SectionRevealProgressInput, "sectionTop" | "viewportHeight">): number {
   if (viewportHeight <= 0) return 0;
 
-  const depthStart = viewportHeight * 0.28;
-  const depthDistance = viewportHeight * 0.82;
+  const depthStart = viewportHeight * 0.18;
+  const depthDistance = viewportHeight * 1.25;
 
   return clamp01((depthStart - sectionTop) / depthDistance);
 }

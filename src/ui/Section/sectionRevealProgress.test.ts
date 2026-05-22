@@ -47,18 +47,24 @@ describe("section reveal progress", () => {
     ).toBe(0.5);
   });
 
-  it("only blurs out once the sticky section is handing off", () => {
-    expect(getSectionExitProgress({ sectionBottom: 900, viewportHeight: 1_000 })).toBe(0);
-    expect(getSectionExitProgress({ sectionBottom: 320, viewportHeight: 1_000 })).toBe(1);
+  it("starts the blur before the sticky section has fully handed off", () => {
+    expect(getSectionExitProgress({ sectionBottom: 1_140, viewportHeight: 1_000 })).toBe(0);
+    expect(getSectionExitProgress({ sectionBottom: 960, viewportHeight: 1_000 })).toBeGreaterThan(
+      0.2,
+    );
+    expect(getSectionExitProgress({ sectionBottom: 420, viewportHeight: 1_000 })).toBe(1);
   });
 
-  it("hides hero copy after the first deliberate scroll", () => {
+  it("keeps hero copy around through a longer deliberate scroll", () => {
     expect(getHeroTextExitProgress({ sectionTop: 0, viewportHeight: 1_000 })).toBe(0);
-    expect(getHeroTextExitProgress({ sectionTop: -340, viewportHeight: 1_000 })).toBe(1);
+    expect(getHeroTextExitProgress({ sectionTop: -340, viewportHeight: 1_000 })).toBeLessThan(0.5);
+    expect(getHeroTextExitProgress({ sectionTop: -560, viewportHeight: 1_000 })).toBeLessThan(0.6);
+    expect(getHeroTextExitProgress({ sectionTop: -1_000, viewportHeight: 1_000 })).toBe(1);
   });
 
-  it("adds depth after the section has locked near center", () => {
+  it("adds depth slowly after the section has locked near center", () => {
     expect(getSectionDepthProgress({ sectionTop: 280, viewportHeight: 1_000 })).toBe(0);
-    expect(getSectionDepthProgress({ sectionTop: -540, viewportHeight: 1_000 })).toBe(1);
+    expect(getSectionDepthProgress({ sectionTop: -120, viewportHeight: 1_000 })).toBeLessThan(0.3);
+    expect(getSectionDepthProgress({ sectionTop: -1_070, viewportHeight: 1_000 })).toBe(1);
   });
 });

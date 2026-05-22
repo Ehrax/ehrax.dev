@@ -6,19 +6,21 @@ import { dotFieldFragmentShader, dotFieldVertexShader } from "../shaders/dotFiel
 type DotFieldProps = {
   baseColor: string;
   dotColor: string;
+  opacity: number;
   progress: number;
 };
 
-export function DotField({ baseColor, dotColor, progress }: DotFieldProps) {
+export function DotField({ baseColor, dotColor, opacity, progress }: DotFieldProps) {
   const materialRef = useRef<ShaderMaterial>(null);
   const uniforms = useMemo(
     () => ({
       uColorA: { value: new Color(baseColor) },
       uColorB: { value: new Color(dotColor) },
+      uOpacity: { value: opacity },
       uProgress: { value: 0 },
       uTime: { value: 0 },
     }),
-    [baseColor, dotColor],
+    [baseColor, dotColor, opacity],
   );
 
   useFrame(({ clock }, delta) => {
@@ -26,6 +28,8 @@ export function DotField({ baseColor, dotColor, progress }: DotFieldProps) {
     materialRef.current.uniforms.uTime.value = clock.elapsedTime;
     materialRef.current.uniforms.uProgress.value +=
       (progress - materialRef.current.uniforms.uProgress.value) * Math.min(delta * 5, 1);
+    materialRef.current.uniforms.uOpacity.value +=
+      (opacity - materialRef.current.uniforms.uOpacity.value) * Math.min(delta * 5, 1);
 
     materialRef.current.uniforms.uColorA.value.lerp(new Color(baseColor), Math.min(delta * 4, 1));
     materialRef.current.uniforms.uColorB.value.lerp(new Color(dotColor), Math.min(delta * 4, 1));

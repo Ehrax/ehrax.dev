@@ -1,12 +1,12 @@
 .section {
   --section-depth-progress: 0;
   --section-exit-progress: 0;
-  --section-exit-z: -8px;
+  --section-exit-z: -4px;
   --section-lock-y: 0px;
-  --section-depth-scale: 0.025;
+  --section-depth-scale: 0.012;
   --section-reveal-progress: 1;
   --section-reveal-offset: calc((1 - var(--section-reveal-progress)) * 14px);
-  --section-depth-z: -38px;
+  --section-depth-z: -18px;
 
   position: relative;
   padding: var(--padding-section-y) var(--padding-section-x);
@@ -19,6 +19,14 @@
 
   color: var(--color-scroll-content-fg);
   min-height: 185svh;
+}
+
+.section[data-scroll-reveal-section="hero"] {
+  min-height: 225svh;
+}
+
+.section[data-scroll-reveal-section="about"] {
+  min-height: 225svh;
 }
 
 .section[data-scroll-reveal-section="work"],
@@ -84,8 +92,11 @@
 .section[data-scroll-reveal-section="about"] .inner {
   --section-lock-y: -50%;
 
+  align-items: center;
   top: 50svh;
   max-width: min(48rem, var(--content-max-width));
+  text-align: center;
+  transform-origin: center center;
 }
 
 .eyebrow {
@@ -110,6 +121,10 @@
 
 .body {
   transition-delay: 80ms;
+}
+
+.section[data-scroll-reveal-section="about"] .body {
+  align-items: center;
 }
 
 @media (prefers-reduced-motion: reduce) {

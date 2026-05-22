@@ -6,9 +6,11 @@ export type SceneVisual = "halftone" | "blueprint" | "neon";
 type SceneState = {
   activeSection: SceneSection;
   controllerValue: number;
+  navRevealed: boolean;
   sceneEnabled: boolean;
   scrollProgress: number;
   visual: SceneVisual;
+  revealNav: () => void;
   setActiveSection: (section: SceneSection) => void;
   setScrollProgress: (scrollProgress: number, controllerValue?: number) => void;
   setSceneEnabled: (enabled: boolean) => void;
@@ -23,9 +25,11 @@ function getSceneVisual(progress: number): SceneVisual {
 export const useSceneStore = create<SceneState>((set) => ({
   activeSection: "hero",
   controllerValue: 0,
+  navRevealed: false,
   sceneEnabled: true,
   scrollProgress: 0,
   visual: "halftone",
+  revealNav: () => set({ navRevealed: true }),
   setActiveSection: (section) => set({ activeSection: section }),
   setScrollProgress: (scrollProgress, controllerValue = scrollProgress) =>
     set({

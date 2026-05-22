@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import { getAboutSceneProgress } from "~/scene/sceneTransition";
 import { type SceneSection, useSceneStore } from "~/state/sceneStore";
+import { getActiveSectionFromRects, hasSectionReachedNavReveal } from "~/ui/Section/activeSection";
 import {
   getDocumentScrollProgress,
   getHeroTextExitProgress,
@@ -11,32 +13,9 @@ import {
 const SECTION_IDS: SceneSection[] = ["hero", "about", "work", "contact"];
 
 export function useActiveSection(): void {
+  const revealNav = useSceneStore((s) => s.revealNav);
   const setActiveSection = useSceneStore((s) => s.setActiveSection);
   const setScrollProgress = useSceneStore((s) => s.setScrollProgress);
-
-  useEffect(() => {
-    if (typeof window === "undefined" || !("IntersectionObserver" in window)) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) {
-          const id = visible.target.id as SceneSection;
-          if (SECTION_IDS.includes(id)) setActiveSection(id);
-        }
-      },
-      { threshold: [0.25, 0.55, 0.8] },
-    );
-
-    for (const id of SECTION_IDS) {
-      const node = document.getElementById(id);
-      if (node) observer.observe(node);
-    }
-
-    return () => observer.disconnect();
-  }, [setActiveSection]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -53,11 +32,16 @@ export function useActiveSection(): void {
       });
 
       let sceneProgress = scrollProgress;
+      const sectionRects: Array<{ id: SceneSection; top: number; bottom: number }> = [];
 
       for (const section of document.querySelectorAll<HTMLElement>(
         "[data-scroll-reveal-section]",
       )) {
         const rect = section.getBoundingClientRect();
+        const id = section.id as SceneSection;
+        if (SECTION_IDS.includes(id)) {
+          sectionRects.push({ id, top: rect.top, bottom: rect.bottom });
+        }
         const progress = getSectionRevealProgress({
           sectionTop: rect.top,
           sectionHeight: rect.height,
@@ -76,7 +60,7 @@ export function useActiveSection(): void {
         section.style.setProperty("--section-exit-progress", exitProgress.toFixed(4));
         section.style.setProperty("--section-depth-progress", depthProgress.toFixed(4));
 
-        if (section.id === "hero") {
+        if (id === "hero") {
           const heroTextExitProgress = getHeroTextExitProgress({
             sectionTop: rect.top,
             viewportHeight,
@@ -86,11 +70,24 @@ export function useActiveSection(): void {
           sceneProgress = Math.max(sceneProgress, heroTextExitProgress * 0.35);
         }
 
-        if (section.id === "about") {
-          sceneProgress = Math.max(sceneProgress, progress * 0.74, exitProgress);
+        if (id === "about") {
+          if (hasSectionReachedNavReveal({ sectionTop: rect.top, viewportHeight })) {
+            revealNav();
+          }
+
+          sceneProgress = Math.max(
+            sceneProgress,
+            getAboutSceneProgress({
+              depthProgress,
+              exitProgress,
+              revealProgress: progress,
+              scrollProgress,
+            }),
+          );
         }
       }
 
+      setActiveSection(getActiveSectionFromRects({ sections: sectionRects, viewportHeight }));
       setScrollProgress(scrollProgress, sceneProgress);
     };
 
@@ -108,5 +105,5 @@ export function useActiveSection(): void {
       window.removeEventListener("scroll", scheduleRevealProgress);
       window.removeEventListener("resize", scheduleRevealProgress);
     };
-  }, [setScrollProgress]);
+  }, [revealNav, setActiveSection, setScrollProgress]);
 }
