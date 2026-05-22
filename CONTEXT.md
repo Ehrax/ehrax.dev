@@ -177,8 +177,12 @@ A no-server-runtime landing page shipped as static files while using client-side
 _Avoid_: Server-rendered application runtime
 
 **Search Preview Metadata**:
-The title, description, canonical URL, social preview tags, and preview image that describe the single landing page when it appears in search results or shared links.
-_Avoid_: SEO system, content marketing platform, route metadata framework
+The title, description, canonical URL, social preview tags, and preview image that describe the current landing page and can later be authored per route.
+_Avoid_: SEO system, content marketing platform, full content framework
+
+**Landing-First Metadata Model**:
+A small typed metadata shape authored for the single landing page now, with route-scoped ownership so future pages can add metadata without redesigning the model.
+_Avoid_: Hardcoded one-off tags, CMS-shaped metadata before content pages exist
 
 **Cloudflare Workers Hosting**:
 The static-deployment target for the site, using Workers + Static Assets (Cloudflare's 2026-recommended successor to Pages). Chosen for unified DNS + hosting under a single provider, unlimited free-tier bandwidth, the largest edge network among comparable static hosts, and a single deployment unit that grows from pure static to optional serverless without product migration. Headers live in `public/_headers`; SPA fallback is configured via `assets.not_found_handling: "single-page-application"` in `wrangler.jsonc`; analytics is auto-injected by Cloudflare and needs no NPM package.
