@@ -38,7 +38,10 @@ export function getHeroTextExitProgress({
 }: Pick<SectionRevealProgressInput, "sectionTop" | "viewportHeight">): number {
   if (viewportHeight <= 0) return 0;
 
-  return clamp01(-sectionTop / viewportHeight);
+  const exitStart = 0;
+  const exitDistance = viewportHeight * 0.74;
+
+  return clamp01((-sectionTop - exitStart) / exitDistance);
 }
 
 export function getSectionDepthProgress({

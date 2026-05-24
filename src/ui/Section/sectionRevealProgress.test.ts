@@ -55,11 +55,15 @@ describe("section reveal progress", () => {
     expect(getSectionExitProgress({ sectionBottom: 420, viewportHeight: 1_000 })).toBe(1);
   });
 
-  it("keeps hero copy around through a longer deliberate scroll", () => {
+  it("moves hero copy out quickly during the first deliberate scroll", () => {
     expect(getHeroTextExitProgress({ sectionTop: 0, viewportHeight: 1_000 })).toBe(0);
-    expect(getHeroTextExitProgress({ sectionTop: -340, viewportHeight: 1_000 })).toBeLessThan(0.5);
-    expect(getHeroTextExitProgress({ sectionTop: -560, viewportHeight: 1_000 })).toBeLessThan(0.6);
-    expect(getHeroTextExitProgress({ sectionTop: -1_000, viewportHeight: 1_000 })).toBe(1);
+    expect(getHeroTextExitProgress({ sectionTop: -340, viewportHeight: 1_000 })).toBeGreaterThan(
+      0.4,
+    );
+    expect(getHeroTextExitProgress({ sectionTop: -650, viewportHeight: 1_000 })).toBeGreaterThan(
+      0.85,
+    );
+    expect(getHeroTextExitProgress({ sectionTop: -820, viewportHeight: 1_000 })).toBe(1);
   });
 
   it("adds depth slowly after the section has locked near center", () => {
