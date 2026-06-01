@@ -1,0 +1,146 @@
+/*
+ * Own the box model. The pill sets an explicit height plus padding, so it must
+ * not inherit the host's box-sizing — without this it depends on the app's
+ * global `border-box` reset and renders taller (content-box) anywhere that
+ * reset is absent, e.g. Storybook.
+ */
+.nav,
+.nav * {
+  box-sizing: border-box;
+}
+
+.nav {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 2.55rem;
+  padding: var(--ex-space-2);
+  border: 1px solid color-mix(in srgb, var(--ex-text-primary) 10%, transparent);
+  border-radius: var(--ex-radius-role-card);
+  color: var(--ex-text-primary);
+  font-family: var(--ex-font-sans);
+  pointer-events: auto;
+  transform: translateZ(0);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--ex-surface-raised) 72%, transparent);
+  /* Lighter frost: the glass should read as a hint, not a heavy blur. */
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  /* Flat: inset highlight only, no drop shadow lifting the pill off the page. */
+  box-shadow: var(--ex-highlight-raised);
+}
+
+/*
+ * Analog grain: a static, tiled grayscale fractal-noise texture overlaid on the
+ * glass so the frosted surface reads as film-like rather than plate-smooth.
+ * GPU-cheap (one decoded tile, no per-frame work). `overlay` lets the grain
+ * modulate the glass's light/dark without tinting it.
+ */
+.backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+  opacity: 0.16;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.brand,
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.55rem;
+  padding: 0 var(--ex-space-3);
+  color: inherit;
+  font-size: var(--ex-text-size-sm);
+  font-weight: var(--ex-weight-semibold);
+  letter-spacing: var(--ex-tracking-wide);
+  line-height: 1;
+  text-decoration: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.brand {
+  padding-inline: var(--ex-space-2);
+}
+
+.divider {
+  width: 1px;
+  height: 1.5rem;
+  margin: 0 var(--ex-space-1) 0 var(--ex-space-2);
+  border: 0;
+  background: var(--ex-border-default);
+}
+
+.list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: inline-flex;
+}
+
+.link {
+  color: var(--ex-text-secondary);
+  transition:
+    color var(--ex-duration-fast) var(--ex-easing-out),
+    opacity var(--ex-duration-fast) var(--ex-easing-out);
+}
+
+.link:hover,
+.link:focus-visible,
+.link[data-active] {
+  color: var(--ex-text-primary);
+}
+
+.link:focus-visible {
+  border-radius: var(--ex-radius-md);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--ex-border-focus) 50%, transparent);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--ex-space-2) * -1);
+  height: 2px;
+  opacity: 0;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in srgb, var(--ex-surface-brand) 90%, transparent) 0%,
+    transparent 70%
+  );
+  transition: opacity var(--ex-duration-fast) var(--ex-easing-out);
+}
+
+.link:hover::after,
+.link:focus-visible::after,
+.link[data-active]::after {
+  opacity: 1;
+}
+
+@media (max-width: 32rem) {
+  .list {
+    display: none;
+  }
+}

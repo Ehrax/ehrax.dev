@@ -1,0 +1,35 @@
+{
+  "name": "@ehrax/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "biome lint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "check": "biome check ."
+  },
+  "dependencies": {
+    "@base-ui/react": "^1.5.0",
+    "@ehrax/design-system": "workspace:*",
+    "clsx": "^2.1.1",
+    "lucide-react": "^1.17.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@ehrax/typescript-config": "workspace:*",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "react": "19.2.6",
+    "react-dom": "19.2.6",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6"
+  }
+}

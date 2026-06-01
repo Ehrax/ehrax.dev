@@ -1,0 +1,35 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-base);
+  font-weight: var(--ex-weight-regular);
+  line-height: var(--ex-leading-normal);
+  color: var(--ex-text-primary);
+  background-color: var(--ex-surface-canvas);
+  transition:
+    background-color var(--ex-duration-base) var(--ex-easing-emphasized),
+    color var(--ex-duration-base) var(--ex-easing-emphasized);
+}
+
+#root {
+  isolation: isolate;
+}
+
+::selection {
+  background-color: var(--ex-surface-brand);
+  color: var(--ex-text-on-brand);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

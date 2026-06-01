@@ -1,0 +1,77 @@
+.card {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--ex-text-primary) 3%, transparent),
+      transparent 40%
+    ),
+    var(--ex-surface-raised);
+  border: 1px solid var(--ex-border-subtle);
+  border-radius: var(--ex-radius-role-card);
+  box-shadow: var(--ex-highlight-raised), var(--ex-shadow-sm);
+  color: var(--ex-text-primary);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--ex-font-sans);
+  gap: var(--ex-space-5);
+  padding: var(--ex-space-5) 0;
+  position: relative;
+}
+
+.card[data-interactive] {
+  cursor: pointer;
+  transition:
+    border-color var(--ex-duration-fast) var(--ex-easing-out),
+    box-shadow var(--ex-duration-base) var(--ex-easing-emphasized),
+    transform var(--ex-duration-base) var(--ex-easing-emphasized);
+}
+.card[data-interactive]:hover {
+  border-color: var(--ex-border-default);
+  box-shadow: var(--ex-highlight-raised), var(--ex-shadow-lg);
+  transform: translateY(-2px);
+}
+
+.header {
+  display: grid;
+  gap: var(--ex-space-1);
+  grid-template-columns: 1fr auto;
+  padding: 0 var(--ex-space-5);
+}
+
+.title {
+  color: var(--ex-text-primary);
+  font-size: var(--ex-text-size-base);
+  font-weight: var(--ex-weight-semibold);
+  grid-column: 1;
+  letter-spacing: var(--ex-tracking-tight);
+  line-height: var(--ex-leading-snug);
+  margin: 0;
+}
+
+.description {
+  color: var(--ex-text-secondary);
+  font-size: var(--ex-text-size-sm);
+  grid-column: 1;
+  line-height: var(--ex-leading-normal);
+  margin: 0;
+}
+
+.action {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  justify-self: end;
+}
+
+.content {
+  color: var(--ex-text-secondary);
+  font-size: var(--ex-text-size-sm);
+  line-height: var(--ex-leading-normal);
+  padding: 0 var(--ex-space-5);
+}
+
+.footer {
+  align-items: center;
+  display: flex;
+  gap: var(--ex-space-2);
+  padding: 0 var(--ex-space-5);
+}

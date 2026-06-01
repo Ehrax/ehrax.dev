@@ -11,9 +11,9 @@ concurrency:
 
 jobs:
   check:
-    name: lint · typecheck · unit
+    name: lint · typecheck · test · build
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v5
 
@@ -31,11 +31,11 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Biome (lint + format)
+      - name: Check (Biome lint · tsc · unit tests, all packages)
         run: pnpm run check
 
-      - name: Build (generates routeTree + runs tsc -b)
+      - name: Build (app + design-system + ui)
         run: pnpm run build
 
-      - name: Unit tests
-        run: pnpm run test
+      - name: Build Storybook
+        run: pnpm run storybook:build

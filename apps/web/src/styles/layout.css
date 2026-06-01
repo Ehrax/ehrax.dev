@@ -1,0 +1,29 @@
+/*
+ * App layout aliases — page/section rhythm and stacking order for the landing
+ * page. These are app-domain layout semantics (not design-system primitives):
+ * they compose the design-system spacing/z scales (--ex-*) into the few
+ * responsive page measures the shell and sections share.
+ */
+
+:root {
+  --page-x: var(--ex-space-6);
+  --section-x: var(--ex-space-6);
+  --section-y: var(--ex-space-20);
+  --content-max-width: 64rem;
+
+  --z-scene: var(--ex-z-base);
+  --z-content: 1;
+  --z-nav: var(--ex-z-raised);
+
+  @media (min-width: 48rem) {
+    --page-x: var(--ex-space-10);
+    --section-x: var(--ex-space-10);
+    --section-y: var(--ex-space-24);
+  }
+
+  @media (min-width: 72rem) {
+    --page-x: var(--ex-space-16);
+    --section-x: var(--ex-space-16);
+    --section-y: var(--ex-space-32);
+  }
+}

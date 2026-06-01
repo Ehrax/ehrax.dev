@@ -1,0 +1,49 @@
+/*
+ * Brand mark used in the NavBar story. The mark itself is ehrax-domain (it is
+ * the consumer's brand, not part of the domain-free primitive), so it lives
+ * here as a story-local stand-in that mirrors apps/web's real Nav mark — same
+ * --ex-* tokens, same blinking caret — so the workbench matches the live app.
+ */
+
+.mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12rem;
+  height: 1.05rem;
+  font-family: var(--ex-font-mono);
+  font-size: 0.95rem;
+  font-weight: var(--ex-weight-bold);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.markLetter {
+  color: inherit;
+  line-height: 1;
+}
+
+.markCaret {
+  width: 0.28rem;
+  height: 1rem;
+  background-color: var(--ex-surface-brand);
+  animation: logo-caret-blink 1.05s steps(1, end) infinite;
+}
+
+@keyframes logo-caret-blink {
+  0%,
+  46% {
+    opacity: 1;
+  }
+
+  47%,
+  100% {
+    opacity: 0.22;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .markCaret {
+    animation: none;
+  }
+}

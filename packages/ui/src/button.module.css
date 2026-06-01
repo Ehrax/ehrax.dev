@@ -1,0 +1,144 @@
+.button {
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: var(--ex-radius-role-field);
+  cursor: pointer;
+  display: inline-flex;
+  flex-shrink: 0;
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-sm);
+  font-weight: var(--ex-weight-medium);
+  gap: var(--ex-space-2);
+  justify-content: center;
+  letter-spacing: var(--ex-tracking-wide);
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    background-color var(--ex-duration-fast) var(--ex-easing-out),
+    border-color var(--ex-duration-fast) var(--ex-easing-out),
+    box-shadow var(--ex-duration-fast) var(--ex-easing-out),
+    color var(--ex-duration-fast) var(--ex-easing-out),
+    transform var(--ex-duration-fast) var(--ex-easing-out);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--ex-border-focus) 45%, transparent);
+}
+
+.button:active:not(:disabled) {
+  transform: translateY(0.5px);
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: var(--ex-opacity-disabled);
+}
+
+.button svg {
+  flex-shrink: 0;
+  height: 16px;
+  width: 16px;
+}
+
+/* Sizes — geometry only. */
+.size-sm {
+  gap: var(--ex-space-1-5);
+  min-height: 32px;
+  padding: 0 var(--ex-space-3);
+}
+.size-default {
+  min-height: 36px;
+  padding: 0 var(--ex-space-4);
+}
+.size-lg {
+  min-height: 44px;
+  padding: 0 var(--ex-space-5);
+}
+.size-icon {
+  min-height: 36px;
+  padding: 0;
+  width: 36px;
+}
+.size-icon-sm {
+  min-height: 32px;
+  padding: 0;
+  width: 32px;
+}
+.size-icon-lg {
+  min-height: 44px;
+  padding: 0;
+  width: 44px;
+}
+
+/* Variants — single axis: emphasis + intent in one. */
+.default {
+  background: var(--ex-intent-primary-solid-bg);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 18%, transparent),
+    var(--ex-shadow-sm);
+  color: var(--ex-intent-primary-solid-fg);
+}
+.default:hover:not(:disabled) {
+  background: var(--ex-intent-primary-solid-bg-hover);
+}
+.default:active:not(:disabled) {
+  background: var(--ex-intent-primary-solid-bg-pressed);
+}
+
+.secondary {
+  background: var(--ex-intent-secondary-soft-bg);
+  color: var(--ex-intent-secondary-soft-fg);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--ex-intent-secondary-soft-bg-hover);
+}
+.secondary:active:not(:disabled) {
+  background: var(--ex-intent-secondary-soft-bg-pressed);
+}
+
+.destructive {
+  background: var(--ex-intent-danger-solid-bg);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, #fff 14%, transparent),
+    var(--ex-shadow-sm);
+  color: var(--ex-intent-danger-solid-fg);
+}
+.destructive:hover:not(:disabled) {
+  background: var(--ex-intent-danger-solid-bg-hover);
+}
+.destructive:active:not(:disabled) {
+  background: var(--ex-intent-danger-solid-bg-pressed);
+}
+
+.outline {
+  background: transparent;
+  border-color: var(--ex-border-default);
+  color: var(--ex-text-primary);
+}
+.outline:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ex-text-primary) 6%, transparent);
+  border-color: var(--ex-border-strong);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--ex-text-primary);
+}
+.ghost:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ex-text-primary) 7%, transparent);
+}
+
+.link {
+  background: transparent;
+  color: var(--ex-text-link);
+  min-height: auto;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.link:hover:not(:disabled) {
+  color: var(--ex-text-link-hover);
+}

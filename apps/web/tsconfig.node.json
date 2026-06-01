@@ -1,0 +1,12 @@
+{
+  "extends": "@ehrax/typescript-config/base.json",
+  "compilerOptions": {
+    "composite": true,
+    "tsBuildInfoFile": "./tsconfig.node.tsbuildinfo",
+    "lib": ["ES2023"],
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": ["vite.config.ts", "vitest.config.ts", "playwright.config.ts"]
+}

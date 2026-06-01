@@ -1,0 +1,150 @@
+.section {
+  --section-depth-progress: 0;
+  --section-exit-progress: 0;
+  --section-exit-z: -4px;
+  --section-lock-y: 0px;
+  --section-depth-scale: 0.012;
+  --section-reveal-progress: 1;
+  --section-reveal-offset: calc((1 - var(--section-reveal-progress)) * 14px);
+  --section-depth-z: -18px;
+
+  position: relative;
+  padding: var(--section-y) var(--section-x);
+}
+
+.section[data-scroll-reveal-section="hero"],
+.section[data-scroll-reveal-section="about"] {
+  /* These sections sit over the dark 3D scene: re-point the design-system text
+     tokens to the scene palette so every primitive (Heading/Text) reads light. */
+  --ex-text-primary: var(--color-scroll-content-fg);
+  --ex-text-secondary: var(--color-scroll-content-muted);
+  --ex-text-tertiary: var(--color-scroll-content-muted);
+
+  color: var(--color-scroll-content-fg);
+  min-height: 185svh;
+}
+
+.section[data-scroll-reveal-section="hero"] {
+  min-height: 320svh;
+}
+
+.section[data-scroll-reveal-section="about"] {
+  min-height: 225svh;
+}
+
+.section[data-scroll-reveal-section="work"],
+.section[data-scroll-reveal-section="contact"] {
+  background-color: var(--ex-surface-canvas);
+}
+
+.section:last-of-type {
+  border-bottom: none;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ex-space-6);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  transform: translate3d(
+      0,
+      calc(
+        var(--section-lock-y) +
+        var(--section-reveal-offset) -
+        var(--section-exit-progress) *
+        36px
+      ),
+      0
+    )
+    perspective(520px)
+    translateZ(
+      calc(
+        var(--section-depth-progress) *
+        var(--section-depth-z) +
+        var(--section-exit-progress) *
+        var(--section-exit-z)
+      )
+    )
+    scale(calc(1 - var(--section-depth-progress) * var(--section-depth-scale)));
+  opacity: clamp(
+    0,
+    calc(var(--section-reveal-progress) * 1.15 - var(--section-exit-progress) * 1.18),
+    1
+  );
+  filter: blur(
+    calc((1 - min(var(--section-reveal-progress), 1)) * 1.1px + var(--section-exit-progress) * 7px)
+  );
+  transition:
+    filter var(--ex-duration-slow) var(--ex-easing-out),
+    opacity var(--ex-duration-slow) var(--ex-easing-out),
+    transform var(--ex-duration-slow) var(--ex-easing-out);
+  will-change: transform, opacity, filter;
+}
+
+.section[data-scroll-reveal-section="hero"] .inner,
+.section[data-scroll-reveal-section="about"] .inner {
+  position: sticky;
+  padding-block: var(--ex-space-16);
+}
+
+.section[data-scroll-reveal-section="hero"] .inner {
+  top: clamp(var(--ex-space-16), 12svh, var(--ex-space-24));
+}
+
+.section[data-scroll-reveal-section="about"] .inner {
+  --section-lock-y: -50%;
+
+  align-items: center;
+  top: 50svh;
+  max-width: min(48rem, var(--content-max-width));
+  text-align: center;
+  transform-origin: center center;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ex-space-4);
+}
+
+.eyebrow,
+.body {
+  transform: translateY(calc((1 - var(--section-reveal-progress)) * 10px));
+  opacity: clamp(0.68, calc(var(--section-reveal-progress) * 1.2), 1);
+  transition:
+    opacity var(--ex-duration-slow) var(--ex-easing-out),
+    transform var(--ex-duration-slow) var(--ex-easing-out);
+  will-change: transform, opacity;
+}
+
+.body {
+  transition-delay: 80ms;
+}
+
+.section[data-scroll-reveal-section="about"] .body {
+  align-items: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    min-height: auto;
+  }
+
+  .inner,
+  .eyebrow,
+  .body {
+    position: static;
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}
+
+.section[data-scroll-reveal-section="work"] .inner,
+.section[data-scroll-reveal-section="contact"] .inner {
+  opacity: 1;
+  filter: none;
+  transform: none;
+}

@@ -1,67 +1,56 @@
 # ehrax.dev
 
-Static single-page React scaffold for the future scroll-driven, Three.js-heavy personal landing page.
+Turborepo monorepo for the ehrax.dev personal site — a static, scroll-driven, Three.js-heavy landing page plus a reusable, Base-UI-powered design system.
 
-The scaffold is provisional: copy, palette, typography, and the final 3D world are intentionally deferred. See `CONTEXT.md` for the domain language and decisions behind the structure.
+See `AGENTS.md` for working agreements and `CONTEXT.md` for the domain language and decisions behind the structure.
 
-## Node version
+## Layout
 
-Pinned to **24.13.1** via `.node-version` (compatible with `fnm`, `nvm`, `volta`, `asdf`).
+```
+apps/
+  web/                 # @ehrax/web — the landing page (Vite + React + TanStack Router, R3F scene)
+  storybook/           # @ehrax/storybook — token galleries + primitive stories (@storybook/react-vite)
+packages/
+  design-system/       # @ehrax/design-system — three-tier tokens → generated --ex-* CSS vars + theme provider
+  ui/                  # @ehrax/ui — Base UI primitives (NavBar, Button, Card) styled with CSS Modules
+  typescript-config/   # @ehrax/typescript-config — shared tsconfig bases
+```
+
+## Tooling
+
+- **pnpm** workspaces + **Turborepo** task orchestration
+- **Vite 8** + **React 19** + **TypeScript 6**; **TanStack Router** (file-based) for the app
+- **React Three Fiber** + **Three.js** scene layer (lazy-loaded behind the DOM shell)
+- **Base UI** (`@base-ui/react`) primitives + **CSS Modules** over `--ex-*` design tokens (no Tailwind, no runtime CSS-in-JS)
+- **Zustand** for shared state, **Zod** for content/config validation, **i18next** for copy
+- **Biome 2** for lint + format, **Vitest 4** + Testing Library for units, **Playwright** for e2e
+- Deployed static to **Cloudflare** via Wrangler
+
+Node is pinned in `.node-version` (run `fnm use` / `nvm use`).
+
+## Scripts (run from the repo root)
 
 ```sh
-fnm use            # picks up .node-version
-# or
-nvm use            # same
+pnpm web:dev            # start the landing-page dev server
+pnpm storybook          # start Storybook (component workbench)
+pnpm build              # turbo: build the app + typecheck the packages
+pnpm typecheck          # turbo: tsc across the workspace
+pnpm test               # turbo: Vitest (jsdom)
+pnpm lint               # turbo: Biome lint
+pnpm check              # turbo: lint + typecheck + test
+pnpm format             # Biome write
+pnpm design-system:generate:css   # regenerate themes/*.css from the TS tokens
+pnpm web:deploy         # build + wrangler deploy
 ```
 
-## Stack
+Focus a single package with `pnpm --filter @ehrax/<name> <task>`.
 
-- **Vite 8** + **React 19** + **TypeScript 6**
-- **React Three Fiber 9**, **Three.js**, **@react-three/drei 10**, **@react-three/postprocessing 3** (TSL-ready scene layer)
-- **Zustand 5** for shared app/scene state (no per-frame values)
-- **Zod 4** for content/config validation
-- **i18next 26** / **react-i18next 17** (English only for now)
-- **CSS Modules** + global CSS variable design system (no Tailwind, no runtime CSS-in-JS)
-- **Biome 2** for lint + format
-- **Vitest 4** + **React Testing Library** + **jest-dom** for unit tests
-- **Playwright** for browser-level smoke tests
+## Design system
 
-## Scripts
+Tokens live in TypeScript under `packages/design-system/src/tokens` in three tiers — **primitive** (palette ramps, type ladder, spacing, radii, motion), **semantic** (light/dark surface, text, border, intent × variant), and **component**. A generator emits them to `--ex-*` CSS custom properties (`pnpm design-system:generate:css`); never hand-edit the generated `src/themes/*.css`.
 
-```sh
-npm run dev        # start Vite dev server
-npm run build      # type-check and produce static assets
-npm run preview    # preview the production build
-npm test           # run Vitest (jsdom)
-npm run test:e2e   # run Playwright smoke
-npm run check      # Biome lint + format check
-npm run format     # Biome write
-```
-
-## Folder layout
-
-```
-src/
-  App.tsx, main.tsx          # React shell entry
-  data/                      # Localized content modules (en.ts)
-  hooks/                     # DOM/state hooks
-  i18n/                      # i18next initialization
-  schemas/                   # Zod schemas
-  scene/                     # React Three Fiber subtree (Canvas, scenes, materials, shaders, postprocessing)
-  sections/                  # Hero, About, Work, Contact
-  state/                     # Zustand stores (appStore, sceneStore)
-  styles/                    # Global CSS (reset, tokens, themes, typography, base)
-  types/                     # Shared TypeScript types
-  ui/                        # DOM UI primitives (Nav, Section, ThemeToggle)
-tests/e2e/                   # Playwright specs
-```
+Primitives in `@ehrax/ui` wrap Base UI parts and style them with co-located CSS Modules reading those variables. The promotion ladder is tokens → primitives → patterns → layouts → pages; `@ehrax/ui` stays domain-free while domain components live in `apps/web`.
 
 ## Theming
 
-System-first light/dark theme with a manual override. Preference cycles `system → dark → light → system…` via the nav toggle and is persisted in `localStorage` under `theme-preference`. A small inline boot script in `index.html` applies the stored preference before React mounts to avoid a flash.
-
-Color, typography, spacing, and layout tokens live as CSS variables in `src/styles/`. Component styling uses CSS Modules; global CSS is limited to reset, base, themes, tokens, typography, and spacing.
-
-## Scene layer
-
-The R3F subtree under `src/scene/` is intentionally minimal. It mounts a fixed-position Canvas behind the DOM with no fake final visuals — only ambient and directional light. Future scenes, objects, materials, shaders, and postprocessing have dedicated subdirectories. The Canvas chunk is lazy-loaded so the initial JS payload stays focused on the DOM shell.
+System-first light/dark with a manual override, driven by `data-theme` on `<html>`. A small inline boot script in `apps/web/index.html` applies the stored preference before React mounts to avoid a flash. The design-system themes (`@ehrax/design-system/themes/{light,dark}.css`) and the app's own scene tokens both switch on the same attribute.

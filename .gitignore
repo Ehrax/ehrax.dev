@@ -10,8 +10,10 @@ coverage
 playwright-report
 test-results
 .vite
+.turbo
+storybook-static
 *.log
 *.tsbuildinfo
-src/routeTree.gen.ts
+**/routeTree.gen.ts
 .tanstack
 .wrangler

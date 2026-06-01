@@ -7,12 +7,20 @@
   },
   "files": {
     "includes": [
-      "**",
+      "apps/**",
+      "packages/**",
+      "*.json",
+      "*.jsonc",
+      "*.md",
       "!**/dist",
+      "!**/storybook-static",
       "!**/node_modules",
       "!**/playwright-report",
       "!**/test-results",
-      "!**/coverage"
+      "!**/coverage",
+      "!**/routeTree.gen.ts",
+      "!packages/design-system/src/themes/light.css",
+      "!packages/design-system/src/themes/dark.css"
     ]
   },
   "formatter": {
@@ -57,7 +65,7 @@
   },
   "overrides": [
     {
-      "includes": ["src/styles/base.css", "src/scene/SceneMount.module.css"],
+      "includes": ["apps/web/src/styles/base.css", "apps/web/src/scene/SceneMount.module.css"],
       "linter": {
         "rules": {
           "complexity": {

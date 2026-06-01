@@ -8,69 +8,40 @@
     "node": ">=26.0.0"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && tsc -b",
-    "typecheck": "tsc -b",
-    "generate:seo": "node scripts/generate-static-seo.mjs",
-    "check:static": "node scripts/check-static-deploy.mjs",
-    "verify:static": "pnpm run build && pnpm run check:static",
-    "analyze": "ANALYZE=true vite build",
-    "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:e2e": "playwright test",
-    "check": "biome check .",
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "check": "turbo run check",
     "format": "biome format --write .",
-    "lint": "biome lint .",
-    "cf:dev": "wrangler dev",
-    "cf:deploy": "pnpm run build && wrangler deploy",
-    "cf:deploy:dry": "pnpm run build && wrangler deploy --dry-run",
-    "cf:types": "wrangler types"
-  },
-  "dependencies": {
-    "@react-three/drei": "^10.7.7",
-    "@react-three/fiber": "^9.6.1",
-    "@react-three/postprocessing": "^3.0.4",
-    "@tanstack/react-router": "^1.169.2",
-    "@tanstack/react-router-devtools": "^1.166.13",
-    "i18next": "^26.1.0",
-    "motion": "^12.38.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-i18next": "^17.0.7",
-    "three": "^0.184.0",
-    "zod": "^4.4.3",
-    "zustand": "^5.0.13"
+    "format:check": "biome format .",
+    "web:dev": "turbo run dev --filter=@ehrax/web",
+    "web:build": "turbo run build --filter=@ehrax/web",
+    "web:preview": "turbo run preview --filter=@ehrax/web",
+    "web:test": "turbo run test --filter=@ehrax/web",
+    "web:e2e": "turbo run e2e --filter=@ehrax/web",
+    "web:deploy": "turbo run deploy --filter=@ehrax/web",
+    "web:deploy:dry": "turbo run deploy:dry --filter=@ehrax/web",
+    "design-system:generate:css": "turbo run generate:css --filter=@ehrax/design-system",
+    "storybook": "turbo run storybook --filter=@ehrax/storybook",
+    "storybook:build": "turbo run build:storybook --filter=@ehrax/storybook"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.15",
-    "@iconify-json/lucide": "^1.2.107",
-    "@iconify-json/simple-icons": "^1.2.82",
-    "@playwright/test": "^1.60.0",
-    "@tanstack/router-plugin": "^1.167.35",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/node": "^25.7.0",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "@types/three": "^0.184.1",
-    "@vitejs/plugin-react": "^6.0.1",
-    "jsdom": "^29.1.1",
-    "rollup-plugin-visualizer": "^7.0.1",
-    "typescript": "^6.0.3",
-    "unplugin-icons": "^23.0.1",
-    "vite": "^8.0.12",
-    "vite-imagetools": "^10.0.0",
-    "vite-plugin-svgr": "^5.2.0",
-    "vitest": "^4.1.6",
-    "wrangler": "^4.90.0"
+    "tsx": "^4.20.3",
+    "turbo": "^2.9.14",
+    "typescript": "^6.0.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
       "esbuild",
       "sharp",
       "workerd"
-    ]
+    ],
+    "overrides": {
+      "react": "19.2.6",
+      "react-dom": "19.2.6"
+    }
   }
 }

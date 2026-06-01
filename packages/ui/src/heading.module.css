@@ -1,0 +1,69 @@
+.heading {
+  color: var(--ex-text-primary);
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Display face (expressive) — display + h1-h3. */
+.display-2xl {
+  font-family: var(--ex-font-display);
+  font-size: var(--ex-text-size-7xl);
+  font-weight: var(--ex-weight-bold);
+  letter-spacing: var(--ex-tracking-tight);
+  line-height: var(--ex-leading-tight);
+}
+
+.display-xl {
+  font-family: var(--ex-font-display);
+  font-size: var(--ex-text-size-6xl);
+  font-weight: var(--ex-weight-bold);
+  letter-spacing: var(--ex-tracking-tight);
+  line-height: var(--ex-leading-tight);
+}
+
+.h1 {
+  font-family: var(--ex-font-display);
+  font-size: var(--ex-text-size-5xl);
+  font-weight: var(--ex-weight-bold);
+  letter-spacing: var(--ex-tracking-tight);
+  line-height: var(--ex-leading-tight);
+}
+
+.h2 {
+  font-family: var(--ex-font-display);
+  font-size: var(--ex-text-size-4xl);
+  font-weight: var(--ex-weight-bold);
+  letter-spacing: var(--ex-tracking-tight);
+  line-height: var(--ex-leading-tight);
+}
+
+.h3 {
+  font-family: var(--ex-font-display);
+  font-size: var(--ex-text-size-3xl);
+  font-weight: var(--ex-weight-semibold);
+  letter-spacing: var(--ex-tracking-tight);
+  line-height: var(--ex-leading-snug);
+}
+
+/* Sans face (UI) — h4-h6. */
+.h4 {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-2xl);
+  font-weight: var(--ex-weight-semibold);
+  letter-spacing: var(--ex-tracking-tight);
+  line-height: var(--ex-leading-snug);
+}
+
+.h5 {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-xl);
+  font-weight: var(--ex-weight-semibold);
+  line-height: var(--ex-leading-snug);
+}
+
+.h6 {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-lg);
+  font-weight: var(--ex-weight-semibold);
+  line-height: var(--ex-leading-snug);
+}

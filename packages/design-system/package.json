@@ -1,0 +1,37 @@
+{
+  "name": "@ehrax/design-system",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens": "./src/tokens/index.ts",
+    "./theme": "./src/theme/index.ts",
+    "./themes/light.css": "./src/themes/light.css",
+    "./themes/dark.css": "./src/themes/dark.css"
+  },
+  "scripts": {
+    "build": "tsc --noEmit",
+    "lint": "biome lint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "check": "biome check .",
+    "generate:css": "tsx scripts/generate-css.ts"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@ehrax/typescript-config": "workspace:*",
+    "@types/react": "^19.2.14",
+    "react": "19.2.6",
+    "tsx": "^4.20.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6"
+  }
+}

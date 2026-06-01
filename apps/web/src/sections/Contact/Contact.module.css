@@ -1,0 +1,30 @@
+.intro {
+  max-width: 60ch;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ex-space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-block-start: var(--ex-space-4);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--ex-space-3) var(--ex-space-5);
+  border: 1px solid var(--ex-border-default);
+  border-radius: var(--ex-radius-full);
+  transition:
+    background-color var(--ex-duration-fast) var(--ex-easing-emphasized),
+    border-color var(--ex-duration-fast) var(--ex-easing-emphasized);
+}
+
+.link:hover {
+  background-color: var(--ex-surface-raised);
+  border-color: var(--ex-border-strong);
+  text-decoration: none;
+}

@@ -1,0 +1,80 @@
+.text {
+  margin: 0;
+}
+
+/* Roles — sans/mono families from the type scale. */
+.body-lg {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-lg);
+  font-weight: var(--ex-weight-regular);
+  line-height: var(--ex-leading-relaxed);
+}
+
+.body {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-base);
+  font-weight: var(--ex-weight-regular);
+  line-height: var(--ex-leading-normal);
+}
+
+.body-sm {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-sm);
+  font-weight: var(--ex-weight-regular);
+  line-height: var(--ex-leading-normal);
+}
+
+.body-bold {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-base);
+  font-weight: var(--ex-weight-semibold);
+  line-height: var(--ex-leading-normal);
+}
+
+.label {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-sm);
+  font-weight: var(--ex-weight-medium);
+  line-height: var(--ex-leading-snug);
+}
+
+.caption {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-xs);
+  font-weight: var(--ex-weight-regular);
+  line-height: var(--ex-leading-snug);
+}
+
+.overline {
+  font-family: var(--ex-font-sans);
+  font-size: var(--ex-text-size-xs);
+  font-weight: var(--ex-weight-semibold);
+  letter-spacing: var(--ex-tracking-widest);
+  line-height: var(--ex-leading-none);
+  text-transform: uppercase;
+}
+
+.code {
+  font-family: var(--ex-font-mono);
+  font-size: var(--ex-text-size-sm);
+  font-weight: var(--ex-weight-regular);
+  line-height: var(--ex-leading-normal);
+}
+
+/* Tone — emphasis on top of the role. Defaults inherit nothing: `default`
+   pins the primary text color so Text is legible on any surface. */
+.tone-default {
+  color: var(--ex-text-primary);
+}
+.tone-secondary {
+  color: var(--ex-text-secondary);
+}
+.tone-tertiary {
+  color: var(--ex-text-tertiary);
+}
+.tone-brand {
+  color: var(--ex-text-brand);
+}
+.tone-inverse {
+  color: var(--ex-text-inverse);
+}

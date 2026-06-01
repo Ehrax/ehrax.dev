@@ -1,0 +1,7 @@
+{
+  "extends": "@ehrax/typescript-config/react-library.json",
+  "compilerOptions": {
+    "moduleResolution": "bundler"
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", ".storybook/**/*.ts"]
+}
