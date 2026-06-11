@@ -12,17 +12,35 @@
   pointer-events: none;
 }
 
+/* Sits over the canvas inside the scene layer; opacity is driven imperatively
+   by SceneCover. */
+.sceneCover {
+  position: absolute;
+  inset: 0;
+  background-color: var(--ex-surface-canvas);
+  opacity: 0;
+}
+
 .main {
   position: relative;
   z-index: var(--z-content);
+  /* The main element spans the whole page above the canvas; left interactive
+     it would swallow every pointer event before the in-canvas contact buttons
+     see them. Sections re-enable their own pointer events (Section.module.css);
+     contact stays inert so clicks fall through to the canvas. */
+  pointer-events: none;
 }
 
-.footer {
+/* A thin centred banner closing the page out beneath the in-canvas contact
+   links — the only chrome below the scene finale. */
+.copyright {
   position: relative;
   z-index: var(--z-content);
-  padding: var(--ex-space-8) var(--page-x);
+  display: flex;
+  justify-content: center;
+  padding: var(--ex-space-5) var(--page-x);
+  background-color: var(--ex-surface-canvas);
   border-top: 1px solid var(--ex-border-default);
-  color: var(--ex-text-secondary);
 }
 
 .fallback {

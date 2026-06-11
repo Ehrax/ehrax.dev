@@ -8,4 +8,9 @@ describe("Hero section", () => {
     render(<Hero />);
     expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
   });
+
+  it("renders the name Alexander Rasputin", () => {
+    render(<Hero />);
+    expect(screen.getByText("Alexander Rasputin")).toBeInTheDocument();
+  });
 });

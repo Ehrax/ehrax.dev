@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import type { SceneVisual } from "~/state/sceneStore";
 
+type NebulaColors = { core: string; mid: string; rim: string; accent: string };
+
 type VisualTokens = Record<SceneVisual, string>;
 
 export type ScenePalette = {
   background: VisualTokens;
-  dotBase: string;
-  dot: VisualTokens;
-  floor: string;
-  gridPrimary: string;
-  gridSecondary: string;
-  glyph: VisualTokens;
-  glyphEmissive: string;
-  pointLight: string;
+  nebula: NebulaColors;
+  star: string;
 };
 
 const readToken = (styles: CSSStyleDeclaration, name: string, seen = new Set<string>()): string => {
@@ -36,22 +32,13 @@ function readScenePalette(): ScenePalette {
       halftone: token(styles, "--color-scroll-scene-bg-start"),
       neon: token(styles, "--color-scroll-scene-bg-final"),
     },
-    dotBase: token(styles, "--color-scroll-scene-dot-base"),
-    dot: {
-      blueprint: token(styles, "--color-scroll-scene-dot-hold"),
-      halftone: token(styles, "--color-scroll-scene-dot-start"),
-      neon: token(styles, "--color-scroll-scene-dot-final"),
+    nebula: {
+      core: token(styles, "--color-scroll-scene-nebula-core"),
+      mid: token(styles, "--color-scroll-scene-nebula-mid"),
+      rim: token(styles, "--color-scroll-scene-nebula-rim"),
+      accent: token(styles, "--color-scroll-scene-nebula-accent"),
     },
-    floor: token(styles, "--color-scroll-scene-floor"),
-    gridPrimary: token(styles, "--color-scroll-scene-grid-primary"),
-    gridSecondary: token(styles, "--color-scroll-scene-grid-secondary"),
-    glyph: {
-      blueprint: token(styles, "--color-scroll-scene-glyph-hold"),
-      halftone: token(styles, "--color-scroll-scene-glyph-start"),
-      neon: token(styles, "--color-scroll-scene-glyph-final"),
-    },
-    glyphEmissive: token(styles, "--color-scroll-scene-glyph-emissive"),
-    pointLight: token(styles, "--color-scroll-scene-point-light"),
+    star: token(styles, "--color-scroll-scene-star"),
   };
 }
 

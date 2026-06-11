@@ -40,7 +40,7 @@ describe("section reveal progress", () => {
   it("maps the section through the reveal window before the sticky hold", () => {
     expect(
       getSectionRevealProgress({
-        sectionTop: 570,
+        sectionTop: 480,
         sectionHeight: 1_000,
         viewportHeight: 1_000,
       }),

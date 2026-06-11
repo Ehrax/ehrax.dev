@@ -10,6 +10,9 @@
 
   position: relative;
   padding: var(--section-y) var(--section-x);
+  /* Re-enable interaction per section: the parent <main> is pointer-inert so
+     the canvas can receive events where a section (contact) opts out. */
+  pointer-events: auto;
 }
 
 .section[data-scroll-reveal-section="hero"],
@@ -25,17 +28,31 @@
 }
 
 .section[data-scroll-reveal-section="hero"] {
-  min-height: 320svh;
+  min-height: 460svh;
 }
 
 .section[data-scroll-reveal-section="about"] {
-  min-height: 225svh;
+  min-height: 260svh;
 }
 
-.section[data-scroll-reveal-section="work"],
+/* Work carries no background of its own: the full-viewport SceneCover (see
+   __root) holds the flat canvas color behind it and lifts temporally with the
+   contact finale — a section-level background would always paint a hard edge
+   at its own boundary while semi-transparent. */
+
+/* Contact stays transparent: the scene gradient has already landed exactly on
+   var(--ex-surface-canvas) by now, so this is visually seamless — and it lets
+   the particle finale (the name morph) show through behind the contact copy. */
 .section[data-scroll-reveal-section="contact"] {
-  background-color: var(--ex-surface-canvas);
+  /* ~90svh + the copyright banner ≈ one viewport: once the outro has played
+     the whole end page is on screen with no extra scroll. The finale is
+     scrubbed against this height (contactProgress), so keep it near 90svh. */
+  min-height: 90svh;
+  /* The contact title, email and links all render in the canvas; let clicks in
+     this (visually empty) section fall through to the in-canvas buttons. */
+  pointer-events: none;
 }
+
 
 .section:last-of-type {
   border-bottom: none;
@@ -142,7 +159,25 @@
   }
 }
 
-.section[data-scroll-reveal-section="work"] .inner,
+/* Work's farewell runs in two phases: first the grid recedes — shrinking into
+   the depth, still sharp, inviting a last lingering read — then the blur and
+   fade land only on the back half of the exit window. */
+.section[data-scroll-reveal-section="work"] .inner {
+  --section-exit-z: -16px;
+  --work-exit-late: clamp(0, calc((var(--section-exit-progress) - 0.5) / 0.5), 1);
+
+  opacity: clamp(
+    0,
+    calc(var(--section-reveal-progress) * 1.15 - var(--work-exit-late) * 1.18),
+    1
+  );
+  filter: blur(
+    calc((1 - min(var(--section-reveal-progress), 1)) * 1.1px + var(--work-exit-late) * 7px)
+  );
+}
+
+/* Only contact opts out of the shared treatment (its content lives in the
+   canvas). */
 .section[data-scroll-reveal-section="contact"] .inner {
   opacity: 1;
   filter: none;

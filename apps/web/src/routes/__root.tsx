@@ -1,7 +1,8 @@
 import { Text } from "@ehrax/ui";
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { useResolvedTheme } from "~/hooks/useResolvedTheme";
+import { contactCanvasReveal, smooth01 } from "~/scene/scenes/landingTuning";
 import { useSceneStore } from "~/state/sceneStore";
 import { Nav } from "~/ui/Nav/Nav";
 import styles from "./__root.module.css";
@@ -34,13 +35,14 @@ function RootLayout() {
           <Suspense fallback={null}>
             <SceneMount />
           </Suspense>
+          <SceneCover />
         </div>
       ) : null}
       <Nav />
       <main className={styles.main}>
         <Outlet />
       </main>
-      <footer className={styles.footer}>
+      <footer className={styles.copyright}>
         <Text variant="caption" tone="secondary">
           © ehrax.dev — scaffold
         </Text>
@@ -50,6 +52,32 @@ function RootLayout() {
       </Suspense>
     </div>
   );
+}
+
+// Full-viewport flat canvas color between the scene and the content. Invisible
+// over the hero/About (the scene background has already landed on the same
+// color there), it solidly hides the scene's life (grain, fireflies, finale)
+// behind the Work content, then lifts as the contact finale begins — a purely
+// temporal reveal with no section edge to see. Driven imperatively per scroll
+// tick; no React re-renders.
+function SceneCover() {
+  const coverRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = coverRef.current;
+    if (!el) return;
+    const apply = (controllerValue: number, contactProgress: number) => {
+      // Engages once the hero scene has gone dark (the gradient is flat by
+      // then, so the hand-off is invisible); lifts with the contact reveal.
+      const engaged = smooth01((controllerValue - 0.5) / 0.12);
+      el.style.opacity = String(engaged * (1 - contactCanvasReveal(contactProgress)));
+    };
+    const state = useSceneStore.getState();
+    apply(state.controllerValue, state.contactProgress);
+    return useSceneStore.subscribe((s) => apply(s.controllerValue, s.contactProgress));
+  }, []);
+
+  return <div ref={coverRef} className={styles.sceneCover} />;
 }
 
 function RouteErrorFallback({ error, reset }: { error: Error; reset: () => void }) {

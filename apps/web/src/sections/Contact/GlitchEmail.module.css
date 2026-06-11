@@ -1,0 +1,37 @@
+.line {
+  margin: 0;
+  font-family: var(--ex-font-mono, ui-monospace, monospace);
+  font-size: var(--ex-font-size-body-sm, 0.9375rem);
+  letter-spacing: 0.02em;
+  color: var(--color-scroll-content-muted, var(--ex-text-secondary));
+  text-align: center;
+}
+
+.prompt {
+  opacity: 0.8;
+}
+
+.email {
+  color: var(--color-scroll-content-fg, var(--ex-text-primary));
+  text-decoration: none;
+  /* Misregistered chromatic split, matched to the in-scene telemetry passes. */
+  text-shadow:
+    -0.6px 0 rgba(255, 96, 140, 0.55),
+    0.6px 0 rgba(96, 220, 255, 0.55);
+  transition: text-shadow var(--ex-duration-fast) var(--ex-easing-out);
+}
+
+.email:hover,
+.email:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-shadow:
+    -1.1px 0 rgba(255, 96, 140, 0.7),
+    1.1px 0 rgba(96, 220, 255, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email {
+    text-shadow: none;
+  }
+}

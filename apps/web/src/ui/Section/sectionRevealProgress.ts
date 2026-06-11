@@ -14,8 +14,10 @@ export function getSectionRevealProgress({
 }: SectionRevealProgressInput): number {
   if (sectionHeight <= 0 || viewportHeight <= 0) return 0;
 
-  const revealStart = viewportHeight * 0.86;
-  const revealEnd = viewportHeight * 0.28;
+  // Reveal starts only once the section is well inside the viewport, so the
+  // scene's finale gets its moment before the copy fades in over it.
+  const revealStart = viewportHeight * 0.72;
+  const revealEnd = viewportHeight * 0.24;
 
   return clamp01((revealStart - sectionTop) / (revealStart - revealEnd));
 }
@@ -23,11 +25,21 @@ export function getSectionRevealProgress({
 export function getSectionExitProgress({
   sectionBottom,
   viewportHeight,
-}: Pick<SectionRevealProgressInput, "sectionBottom" | "viewportHeight">): number {
+  // Where the farewell runs, as fractions of the viewport the section bottom
+  // crosses. The defaults suit sticky sections (About), whose copy has been
+  // read in place before the empty runway scrolls out. Flowing sections
+  // (Work) pass a lower window so content only blurs once it is actually
+  // leaving the upper half of the screen, not while it is still being read.
+  exitStartRatio = 1.12,
+  exitEndRatio = 0.42,
+}: Pick<SectionRevealProgressInput, "sectionBottom" | "viewportHeight"> & {
+  exitStartRatio?: number;
+  exitEndRatio?: number;
+}): number {
   if (sectionBottom === undefined || viewportHeight <= 0) return 0;
 
-  const exitStart = viewportHeight * 1.12;
-  const exitEnd = viewportHeight * 0.42;
+  const exitStart = viewportHeight * exitStartRatio;
+  const exitEnd = viewportHeight * exitEndRatio;
 
   return clamp01((exitStart - sectionBottom) / (exitStart - exitEnd));
 }

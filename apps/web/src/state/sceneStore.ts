@@ -5,6 +5,10 @@ export type SceneVisual = "halftone" | "blueprint" | "neon";
 
 type SceneState = {
   activeSection: SceneSection;
+  // How far the Contact section has entered the viewport (0 = still below the
+  // fold, 1 = fully arrived). Drives the closing finale, so the outro starts
+  // whenever the preceding content ends — however long that content grows.
+  contactProgress: number;
   controllerValue: number;
   navRevealed: boolean;
   sceneEnabled: boolean;
@@ -12,7 +16,11 @@ type SceneState = {
   visual: SceneVisual;
   revealNav: () => void;
   setActiveSection: (section: SceneSection) => void;
-  setScrollProgress: (scrollProgress: number, controllerValue?: number) => void;
+  setScrollProgress: (
+    scrollProgress: number,
+    controllerValue?: number,
+    contactProgress?: number,
+  ) => void;
   setSceneEnabled: (enabled: boolean) => void;
 };
 
@@ -24,6 +32,7 @@ function getSceneVisual(progress: number): SceneVisual {
 
 export const useSceneStore = create<SceneState>((set) => ({
   activeSection: "hero",
+  contactProgress: 0,
   controllerValue: 0,
   navRevealed: false,
   sceneEnabled: true,
@@ -31,8 +40,9 @@ export const useSceneStore = create<SceneState>((set) => ({
   visual: "halftone",
   revealNav: () => set({ navRevealed: true }),
   setActiveSection: (section) => set({ activeSection: section }),
-  setScrollProgress: (scrollProgress, controllerValue = scrollProgress) =>
+  setScrollProgress: (scrollProgress, controllerValue = scrollProgress, contactProgress = 0) =>
     set({
+      contactProgress,
       controllerValue,
       scrollProgress,
       visual: getSceneVisual(controllerValue),

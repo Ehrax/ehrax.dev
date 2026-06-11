@@ -5,6 +5,8 @@ export const workCardSchema = z.object({
   title: z.string().min(1),
   summary: z.string().min(1),
   role: z.string().min(1),
+  // Bento footprint: how much of the grid the card claims.
+  size: z.enum(["standard", "wide", "tall"]).default("standard"),
 });
 
 export const contactLinkSchema = z.object({
@@ -41,7 +43,8 @@ export const siteContentSchema = z.object({
   contact: z.object({
     eyebrow: z.string().min(1),
     heading: z.string().min(1),
-    intro: z.string().min(1),
+    prompt: z.string().min(1),
+    email: z.string().min(1),
     links: z.array(contactLinkSchema).min(1),
   }),
 });

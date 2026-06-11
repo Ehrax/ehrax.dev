@@ -32,6 +32,7 @@ export function useActiveSection(): void {
       });
 
       let sceneProgress = scrollProgress;
+      let contactProgress = 0;
       const sectionRects: Array<{ id: SceneSection; top: number; bottom: number }> = [];
 
       for (const section of document.querySelectorAll<HTMLElement>(
@@ -50,6 +51,11 @@ export function useActiveSection(): void {
         const exitProgress = getSectionExitProgress({
           sectionBottom: rect.bottom,
           viewportHeight,
+          // Work flows (no sticky lock) and exits in two phases (recede, then
+          // blur — see Section.module.css), so it gets a longer window: the
+          // shrink starts as the end of the grid clears the fold, the blur
+          // half only lands once the content is genuinely leaving.
+          ...(id === "work" ? { exitStartRatio: 0.95, exitEndRatio: 0.15 } : {}),
         });
         const depthProgress = getSectionDepthProgress({
           sectionTop: rect.top,
@@ -85,10 +91,20 @@ export function useActiveSection(): void {
             }),
           );
         }
+        if (id === "contact") {
+          // 0 while the section is below the fold, 1 once its own height has
+          // scrolled in. Anchored to the section, not document fractions, so
+          // the finale fires when the preceding content ends — no matter how
+          // much Work content is added later.
+          contactProgress =
+            rect.height > 0
+              ? Math.min(1, Math.max(0, (viewportHeight - rect.top) / rect.height))
+              : 0;
+        }
       }
 
       setActiveSection(getActiveSectionFromRects({ sections: sectionRects, viewportHeight }));
-      setScrollProgress(scrollProgress, sceneProgress);
+      setScrollProgress(scrollProgress, sceneProgress, contactProgress);
     };
 
     const scheduleRevealProgress = () => {

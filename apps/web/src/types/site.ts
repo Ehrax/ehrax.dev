@@ -9,6 +9,7 @@ export type WorkCard = {
   title: string;
   summary: string;
   role: string;
+  size: "standard" | "wide" | "tall";
 };
 
 export type ContactLink = {

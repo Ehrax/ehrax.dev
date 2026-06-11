@@ -6,4 +6,8 @@
 .canvas {
   width: 100% !important;
   height: 100% !important;
+  /* Re-enable hit-testing so the in-canvas contact buttons are clickable. The
+     canvas sits behind content (lower z), so it only receives events where the
+     content above opts out (the Contact section sets pointer-events: none). */
+  pointer-events: auto;
 }

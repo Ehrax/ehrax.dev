@@ -1,7 +1,73 @@
-.heading {
-  max-width: 22ch;
+/* Visually hidden but kept in the accessibility tree and document outline. */
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }
 
-.lede {
-  max-width: 56ch;
+/* Overlay wrapper: covers the hero section, pointer events disabled so the
+   3D canvas below remains interactive. */
+.overlay {
+  /* Viewport-fixed like the scene layer: the identity block anchors to the
+     screen's bottom-left, not to the hero section's box in document flow. */
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
 }
+
+/* Inset from the bottom-left, mirroring HeroOverlayA positioning intent.
+   Roughly 15–18% from the left edge and comfortably above the bottom. */
+.identity {
+  position: absolute;
+  bottom: clamp(var(--ex-space-6), 9vh, 6rem);
+  left: clamp(var(--ex-space-10), 16vw, 18rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ex-space-2);
+  font-family: var(--ex-font-sans);
+  color: var(--ex-text-primary);
+
+  /* Hidden until the nav has entered, then rises in a beat behind it
+     (the delay staggers the identity after the nav's own entrance). */
+  opacity: 0;
+  transform: translateY(0.75rem);
+  transition:
+    opacity 420ms var(--ex-easing-out) 460ms,
+    transform 720ms var(--ex-easing-out) 460ms;
+  will-change: opacity, transform;
+}
+
+.identity[data-visible="true"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .identity {
+    transition: none;
+    transform: none;
+  }
+}
+
+.role {
+  font-family: var(--ex-font-mono);
+  font-size: var(--ex-text-size-sm);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  /* Blueprint-ink tint: mirrors the scene's secondary text palette. */
+  color: var(--ex-text-secondary);
+}
+
+.name {
+  font-size: var(--ex-text-size-3xl);
+  line-height: var(--ex-leading-tight);
+}
+
+/* Role glitch motion is JS-driven (GlitchRole) and respects
+   prefers-reduced-motion in GlitchRole.tsx logic. */

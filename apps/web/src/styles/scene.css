@@ -5,54 +5,36 @@
  * so the variable NAMES are load-bearing and must stay on :root. They may
  * reference --ex-* where it helps; readToken resolves nested var() chains.
  *
- * Base scene hues are theme-independent (the scene is dark by design); only the
- * per-phase scroll colors shift between light and dark document themes.
+ * The nebula hues are theme-independent (the universe is dark by design); only
+ * the scroll background stops shift between light and dark document themes.
+ * The final stop MUST stay on var(--ex-surface-canvas): the gradient ends on
+ * the page's own surface color so canvas and content meet without a seam
+ * (pinned by scenePalette.test.ts).
  */
 
 :root {
-  --color-brand-light: #8ea0ff;
-  --color-atmosphere: #78d8ff;
   --color-scene-fg: #eff0f5;
   --color-scene-muted: #a0a6c5;
-  --color-scene-glow: #8ea0ff;
 
   --color-scroll-content-fg: var(--color-scene-fg);
   --color-scroll-content-muted: var(--color-scene-muted);
+
+  --color-scroll-scene-nebula-core: #cfe4ff;
+  --color-scroll-scene-nebula-mid: #7a4fd0;
+  --color-scroll-scene-nebula-rim: #1b2a84;
+  --color-scroll-scene-nebula-accent: #ffd9a0;
+  --color-scroll-scene-star: #e8eeff;
 }
 
 :root,
 :root[data-theme="light"] {
-  --color-scroll-scene-bg-start: #364cc9;
+  --color-scroll-scene-bg-start: #27357f;
   --color-scroll-scene-bg-hold: #0b0f28;
-  --color-scroll-scene-bg-final: #080b11;
-  --color-scroll-scene-dot-base: #050814;
-  --color-scroll-scene-dot-start: var(--color-brand-light);
-  --color-scroll-scene-dot-hold: var(--color-scene-glow);
-  --color-scroll-scene-dot-final: var(--color-atmosphere);
-  --color-scroll-scene-floor: #080b11;
-  --color-scroll-scene-grid-primary: var(--color-brand-light);
-  --color-scroll-scene-grid-secondary: #202d79;
-  --color-scroll-scene-glyph-start: var(--color-scene-fg);
-  --color-scroll-scene-glyph-hold: var(--color-scene-glow);
-  --color-scroll-scene-glyph-final: var(--color-atmosphere);
-  --color-scroll-scene-glyph-emissive: var(--color-atmosphere);
-  --color-scroll-scene-point-light: var(--color-atmosphere);
+  --color-scroll-scene-bg-final: var(--ex-surface-canvas);
 }
 
 :root[data-theme="dark"] {
-  --color-scroll-scene-bg-start: #202746;
+  --color-scroll-scene-bg-start: #04060f;
   --color-scroll-scene-bg-hold: #0b0f28;
-  --color-scroll-scene-bg-final: #080a12;
-  --color-scroll-scene-dot-base: #080a12;
-  --color-scroll-scene-dot-start: #364cc9;
-  --color-scroll-scene-dot-hold: #8693df;
-  --color-scroll-scene-dot-final: var(--color-atmosphere);
-  --color-scroll-scene-floor: #080a12;
-  --color-scroll-scene-grid-primary: #8693df;
-  --color-scroll-scene-grid-secondary: #434556;
-  --color-scroll-scene-glyph-start: var(--color-scene-fg);
-  --color-scroll-scene-glyph-hold: #aeb7ea;
-  --color-scroll-scene-glyph-final: var(--color-atmosphere);
-  --color-scroll-scene-glyph-emissive: var(--color-atmosphere);
-  --color-scroll-scene-point-light: var(--color-atmosphere);
+  --color-scroll-scene-bg-final: var(--ex-surface-canvas);
 }

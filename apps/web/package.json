@@ -33,6 +33,7 @@
     "@tanstack/react-router-devtools": "^1.166.13",
     "i18next": "^26.1.0",
     "motion": "^12.38.0",
+    "postprocessing": "6.39.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-i18next": "^17.0.7",

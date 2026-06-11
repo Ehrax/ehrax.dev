@@ -14,7 +14,7 @@ export function Work() {
       </Text>
       <ul className={styles.grid}>
         {work.cards.map((card) => (
-          <li key={card.id}>
+          <li key={card.id} data-size={card.size}>
             <WorkCard card={card} />
           </li>
         ))}
